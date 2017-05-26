@@ -1,0 +1,24 @@
+Ship ship;
+
+float G = 1;
+
+void setup() {
+  size(900, 400);
+  background(33, 33, 33);
+}
+
+void draw() {
+  background(33, 33, 33);
+  Level level = LevelMgr.getLevel();
+
+  for (Body obj : level.mapObjects) {
+    PVector force = obj.GetForce(ship);
+    ship.applyForce(force);
+  }
+
+  for (Body obj : level.mapObjects) {
+    obj.Update();
+  }
+  
+  ship.Update();
+}
