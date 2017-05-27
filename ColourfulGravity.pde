@@ -7,9 +7,9 @@ void setup() {
   background(33, 33, 33);
 }
 
+LevelMgr lvlMgr = new LevelMgr();
 void draw() {
   background(33, 33, 33);
-  Level level = LevelMgr.getLevel();
 
   for (Body obj : level.mapObjects) {
     PVector force = obj.GetForce(ship);
@@ -19,6 +19,6 @@ void draw() {
   for (Body obj : level.mapObjects) {
     obj.Update();
   }
-  
+
   ship.Update();
 }
