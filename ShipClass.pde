@@ -29,7 +29,7 @@ class Ship extends Body {
     // Calculate the angle the ship needs to be rotated based on its current velocity
     PVector axis = new PVector(0,-1);
     float angle = PVector.angleBetween(axis, velocity);
-    if (velocity.x > 0){
+    if (velocity.x < 0){
       angle = 2*PI - angle;
     }
     
