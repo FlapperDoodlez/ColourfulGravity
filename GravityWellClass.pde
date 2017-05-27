@@ -1,9 +1,15 @@
 class GravityWell extends Body {
 
+  void Draw() {
+    fill(colour);
+    noStroke();
+    ellipse(0, 0, radius, radius);
+  }
+  
   void Update() {
     pushMatrix();
-    stroke(colour);
-    ellipse(location.x, location.y, radius, radius);
+    translate(location.x, location.y);
+    Draw();
     popMatrix();
   }
 
@@ -19,7 +25,7 @@ class GravityWell extends Body {
     this.mass = mass;
     this.radius = radius;
   }
-  
+
   String Save(int menu) {
     return String.format("%s %s %s %s %s %s %s %s", GRAVITYWELL, location.x, location.y, mass, radius, active_radius, colour, menu);
   }

@@ -17,8 +17,10 @@ abstract class Body {
     force.setMag((G * mass * b.mass )/(d * d));
     return force;
   }
+  
   abstract void Update();
-
+  abstract void Draw();
+  
   boolean Collision(Body b) {
     float dist = location.dist(b.location);
     return (dist < radius);
@@ -27,4 +29,5 @@ abstract class Body {
   String Save(int menu) {
     return menu + "";
   }
+  
 }

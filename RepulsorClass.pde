@@ -1,10 +1,17 @@
 class Repulsor extends Body {
   color colour;
 
+  void Draw() {
+    fill(colour);
+    noStroke();
+    ellipse(0, 0, radius, radius);
+  }
+
+
   void Update() {
     pushMatrix();
-    stroke(colour);
-    ellipse(location.x, location.y, radius, radius);
+    translate(location.x, location.y);
+    Draw();
     popMatrix();
   }
 
