@@ -4,6 +4,7 @@ abstract class Body {
   float mass = 1;
   float radius;
   float active_radius = 500;
+  color colour;
     
   PVector GetForce(Body b) {
     PVector force = PVector.sub(location, b.location);

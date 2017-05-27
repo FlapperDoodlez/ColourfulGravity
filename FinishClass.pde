@@ -1,10 +1,10 @@
 class Finish extends Body {
-  color colour;
 
   Finish(float x, float y) {
     oLocation = new PVector(x, y);
     location = new PVector(x, y);
     radius = 25;
+    colour = cGoal;
   }
   
   void Update() {

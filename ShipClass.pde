@@ -1,11 +1,10 @@
 class Ship extends Body {
   PVector velocity;
   PVector acceleration;
-  color colour;
 
-  Ship(PVector initial_position, float Mass, color Colour) {
+  Ship(PVector initial_position, float Mass) {
     mass = Mass;
-    colour = Colour;
+    colour = cShip;
     location = initial_position.copy();
     oLocation = initial_position.copy();
     velocity = new PVector(0, 0);

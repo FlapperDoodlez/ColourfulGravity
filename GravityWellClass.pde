@@ -1,5 +1,4 @@
 class GravityWell extends Body {
-  int colour;
 
   void Update() {
     pushMatrix();

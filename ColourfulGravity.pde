@@ -35,7 +35,7 @@ void setup() {
 
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
-  ship = new Ship(level.shipLoc, 5, color(200, 100, 150));
+  ship = new Ship(level.shipLoc, 5);
 }
 
 void draw() {
