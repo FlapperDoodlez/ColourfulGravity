@@ -1,3 +1,6 @@
+import controlP5.*;
+ControlP5 cp5;
+
 Ship ship;
 int LEVEL = -1;
 int PLANET = 0;
@@ -6,6 +9,9 @@ int REPULSOR = 2;
 int WALL = 3;
 
 float G = 1;
+
+Slider powSlider;
+Button launchBtn;
 
 LevelMgr lvlMgr;
 Level level;
@@ -27,8 +33,8 @@ void setup() {
   lev.mapObstacles.add(right);
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
-  
-  Planet b = new Planet(width/2, height/2, 1000, 30, color(150, 100, 200));
+
+  Planet b = new Planet(width/2, height/2, 1000, 30, 30, cLow);  //need to send planet type
   lev.mapBodies.add(b);
   levelsList.add(lev);
   WriteLevels(levelsList);
@@ -36,6 +42,13 @@ void setup() {
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
   ship = new Ship(level.shipLoc, 5);
+
+  //GUI Setup
+  cp5 = new ControlP5(this);
+  powSlider = cp5.addSlider("Power");
+  powSlider.setPosition(20, height-40).setSize(100,20);
+  launchBtn = cp5.addButton("Launch");
+  launchBtn.setPosition(175, height-40).setSize(40,20);
 }
 
 void draw() {
@@ -43,7 +56,7 @@ void draw() {
 
   for (Body obj : level.mapBodies) {
     PVector force = obj.GetForce(ship);
-    println(force);
+    //println(force);
     ship.ApplyForce(force);
   }
 
