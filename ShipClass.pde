@@ -26,6 +26,14 @@ class Ship extends Body {
     fill(colour);
     translate(location.x, location.y);
     strokeJoin(ROUND);
+    // Calculate the angle the ship needs to be rotated based on its current velocity
+    PVector axis = new PVector(0,1);
+    float angle = PVector.angleBetween(axis, velocity);
+    if (velocity.x < 0){
+      angle = angle + 2*(PI - angle);
+    }
+    rotate(angle);
+    
     triangle(0, -radius, radius * sqrt(3) / 2f, radius * 1/2f, radius * -sqrt(3)/2f, radius * 1/2f);
     popMatrix();
     location = oLocation;
