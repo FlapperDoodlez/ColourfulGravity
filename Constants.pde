@@ -6,6 +6,8 @@ final color cWell = #8e44ad;
 final color cBack = #34495e;
 final color cObstacle = #2980b9;  
 final color cGoal = #f1c40f;
+final color cUnSelected = #E0E4CC;
+final color cSelected = #E22211;
 
 final float lowRad = 10.0;
 final float medRad = 20.0;
