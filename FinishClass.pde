@@ -1,5 +1,5 @@
 class Finish extends Body {
-
+  
   Finish(float x, float y) {
     oLocation = new PVector(x, y);
     location = new PVector(x, y);
@@ -7,10 +7,16 @@ class Finish extends Body {
     colour = cGoal;
   }
   
+  void Draw() {
+    noStroke();
+    fill(colour);
+    ellipse(0, 0, radius, radius);
+    text('\u272a', location.x, location.y);
+  }
+  
   void Update() {
     pushMatrix();
-    ellipse(location.x, location.y, 25, 25);
-    text('\u272a', location.x, location.y);
+    translate(location.x, location.y);
     popMatrix();
   }
 }
