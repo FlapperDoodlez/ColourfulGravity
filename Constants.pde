@@ -26,6 +26,7 @@ final int PLANET = 0;
 final int GRAVITYWELL = 1;
 final int REPULSOR = 2;
 final int WALL = 3;
+final int PICKUP = 4;
 
 final int NOTSTARTED = -1;
 final int STARTED = 0;

@@ -12,30 +12,24 @@ class UIMgr {
   ArrayList<Integer> highI = new ArrayList<Integer>();
   ArrayList<Integer> wellI = new ArrayList<Integer>();
 
-
   UIMgr() {
     selected = null;
 
     for (Body menuBody : menuBodies) {
-      switch(menuBody.colour) {
-      case cLow:
+      if (menuBody.radius == lowRad) {
         ++nLow;
         lowI.add(new Integer(count));
-        break;
-      case cMed:
+      } else if (menuBody.radius == medRad) {
         ++nMed;
         medI.add(new Integer(count));
-        break;
-      case cHigh:
+      } else if (menuBody.radius == highRad) {
         ++nHigh;
         highI.add(new Integer(count));
-        break;
-      case cWell:
+      } else if (menuBody.radius == wellRad) {
         ++nWell;
         wellI.add(new Integer(count));
-        break;
       }
-      ++count;
+      count++;
     }
   }
 

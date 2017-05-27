@@ -29,14 +29,14 @@ void setup() {
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
 
-  Planet low1 = new Planet(100, 100, lowMass, lowRad, lowRad, cLow);
-  Planet low2 = new Planet(100, 200, lowMass, lowRad, lowRad, cLow);
-  Planet med1 = new Planet(200, 100, medMass, medRad, medRad, cMed);
-  Planet med2 = new Planet(200, 200, medMass, medRad, medRad, cMed);
+  Planet low1 = new Planet(100, 100, lowMass, lowRad, lowRad, 0);
+  Planet low2 = new Planet(100, 200, lowMass, lowRad, lowRad, 1);
+  Planet med1 = new Planet(200, 100, medMass, medRad, medRad, 2);
+  Planet med2 = new Planet(200, 200, medMass, medRad, medRad, 3);
   Planet high1 = new Planet(300, 100, highMass, highRad, highRad, cHigh);
   Planet high2 = new Planet(300, 200, highMass, highRad, highRad, cHigh);
-  GravityWell well1 = new GravityWell(400, 100, wellMass, 20, 100, cWell);
-  GravityWell well2 = new GravityWell(400, 200, highMass, 20, 100, cWell);
+  GravityWell well1 = new GravityWell(400, 100, wellMass, wellRad, 100, cWell);
+  GravityWell well2 = new GravityWell(400, 200, highMass, wellRad, 100, cWell);
   
   lev.mapBodies.add(low2);
   lev.mapBodies.add(med2);
@@ -68,6 +68,7 @@ void draw() {
     }
   } else if (levelStatus == NOTSTARTED) {
     ui.Draw();
+    noStroke();
     fill(99, 213, 255, 200);
     ellipse(ship.location.x, ship.location.y, shipPushRadius * 2, shipPushRadius * 2);
 
