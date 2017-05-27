@@ -42,7 +42,7 @@ class UIMgr {
       menuBodies.get(lowI.get(i+m)).Draw();
       noFill();
       stroke(255);
-      strokeWeight(3);
+      strokeWeight(2);
       ellipse(0, 0, menuBufRad/2, menuBufRad/2);
       popMatrix();
       ++count;
@@ -68,7 +68,7 @@ class UIMgr {
       menuBodies.get(highI.get(i+m)).Draw();
       noFill();
       stroke(255);
-      strokeWeight(3);
+      strokeWeight(2);
       ellipse(0, 0, menuBufRad/2, menuBufRad/2);
       popMatrix();
       ++count;
@@ -81,7 +81,7 @@ class UIMgr {
       menuBodies.get(wellI.get(i+m)).Draw();
       noFill();
       stroke(255);
-      strokeWeight(3);
+      strokeWeight(2);
       ellipse(0, 0, menuBufRad/2, menuBufRad/2);
       popMatrix();
       ++count;

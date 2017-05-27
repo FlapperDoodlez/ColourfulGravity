@@ -26,7 +26,8 @@ class LevelMgr {
   }
 
   Level getNextLevel() {
-    if (curLevel < levels.size() - 1) { 
+    println(levels.size());
+    if (curLevel >= levels.size() - 1) { 
       return null;
     }
     ++curLevel;
