@@ -27,6 +27,7 @@ class LevelMgr {
     if (curLevel-1 == numLevels) { 
       return null;
     }
+    ++curlevel;
     return levels.get(curLevel+1);
   }
 }
