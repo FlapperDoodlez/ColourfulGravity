@@ -30,11 +30,11 @@ void setup() {
   lev.mapObstacles.add(lower);
 
   Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, 0);
-  Planet low2 = new Planet(300, 50, lowMass, lowRad, lowAct, 1);
+  Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, 1);
   Planet med1 = new Planet(400, 150, medMass, medRad, medAct, 2);
   Planet med2 = new Planet(400, 150, medMass, medRad, medAct, 3);
-  Planet high1 = new Planet(600, 300, highMass, highRad, highRad, 2);
-  Planet high2 = new Planet(600, 300, highMass, highRad, highRad, 1);
+  Planet high1 = new Planet(600, 300, highMass, highRad, highAct, 2);
+  Planet high2 = new Planet(600, 300, highMass, highRad, highAct, 1);
   GravityWell well1 = new GravityWell(width - 80, 100, wellMass, wellRad, 100, 3);
   GravityWell well2 = new GravityWell(width - 80, 100, highMass, wellRad, 100, 3);
 
@@ -87,7 +87,7 @@ void draw() {
   } else if (levelStatus == FINISHED) {
     fill(255);
     textSize(32);
-    text("You Win", width / 2 - 100, height/2 - 100);
+    text("You Win", width / 2 - 60, height/2 - 100);
   }
   // Always update map bodies
   Guide guide;

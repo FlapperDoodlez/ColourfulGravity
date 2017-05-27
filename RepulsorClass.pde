@@ -6,7 +6,12 @@ class Repulsor extends Body {
     strokeWeight(4);
     ellipse(0, 0, radius, radius);
   }
-
+  
+  PVector GetForce(Body b) {
+    PVector normalForce = super.GetForce(b);
+    normalForce.mult(-1);
+    return normalForce;
+  }
 
   void Update() {
     pushMatrix();
@@ -19,7 +24,7 @@ class Repulsor extends Body {
     location = new PVector(x, y);
     oLocation = new PVector(x, y);
     this.active_radius = active_radius;
-    this.mass = -(mass);
+    this.mass = mass;
     this.radius = radius;
     this.colourType = colourType;
     this.colour = getColour(colourType);
