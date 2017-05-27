@@ -3,7 +3,7 @@ class GravityWell extends Body {
   void Draw() {
     fill(colour);
     noStroke();
-    for (float r = 0, t = 0; r < 20; r += 0.5, t += 1.2) {
+    for (float r = 0, t = 0; r < radius; r += 0.5, t += 1.2) {
       float x = r * cos(t);
       float y = r * sin(t);
       ellipse(x, y, 2, 2);
