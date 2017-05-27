@@ -30,7 +30,7 @@ class Pickup extends Body {
   
   boolean Collision(Body b){
     if (visible){
-      bool collide= super.Collision(b);
+      boolean collide= super.Collision(b);
       if (collide){
         b.colourType= this.colourType;
         b.colour = getColour(colourType);
