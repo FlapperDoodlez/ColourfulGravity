@@ -39,3 +39,5 @@ final int BLUE = 1;
 final int GREEN = 2;
 final int PURPLE = 3;
 final int YELLOW = 4;
+
+final int mapHeight = height-75;

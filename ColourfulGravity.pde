@@ -10,7 +10,7 @@ Level level;
 UIMgr ui;
 
 void setup() {
-  size(900, 400);
+  size(900, 600);
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
 
@@ -180,5 +180,6 @@ void mouseClicked() {
 void keyPressed() {
   levelStatus = NOTSTARTED;
   level = lvlMgr.getLevel();
+  ui = new UIMgr();
   ship = new Ship(level.shipLoc, shipMass);
 }
