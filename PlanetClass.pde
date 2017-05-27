@@ -1,5 +1,6 @@
 class Planet extends Body {
   color colour;
+
   void Update() {
     pushMatrix();
     stroke(colour);

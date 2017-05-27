@@ -12,7 +12,7 @@ class GravityWell extends Body {
     return false;
   }
 
-  GravityWell(float x, float y, color colour, float mass, float radius) {
+  GravityWell(float x, float y, float mass, float radius, color colour) {
     location = new PVector(x, y);
     oLocation = location;
     this.colour = colour;
