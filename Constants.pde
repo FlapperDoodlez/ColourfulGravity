@@ -15,11 +15,12 @@ final float lowAct = 100;
 final float medAct = 160;
 final float highAct = 250;
 final float wellAct = wellRad*5;
-final float lowMass = 45;
-final float medMass = 100;
-final float highMass = 145;
-final float wellMass = 500;
+final float lowMass = 200;
+final float medMass = 350;
+final float highMass = 500;
+final float wellMass = 800;
 final float menuBufRad = 80;
+final float shipMass = 2;
 
 final int LEVEL = -1;
 final int PLANET = 0;

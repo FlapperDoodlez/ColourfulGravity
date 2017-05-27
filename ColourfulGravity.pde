@@ -14,7 +14,7 @@ void setup() {
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
 
-  Level lev = new Level(50, height/2, width - 50, height/2);
+  Level lev = new Level(25, height/2, width - 50, height/2);
   lev.mapBodies = new ArrayList<Body>();
   lev.mapObstacles = new ArrayList<Obstacle>();
   lev.menuBodies = new ArrayList<Body>();
@@ -54,14 +54,14 @@ void setup() {
 
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
-  ship = new Ship(level.shipLoc, 5);
+  ship = new Ship(level.shipLoc, shipMass);
   ui = new UIMgr();
 }
 
 
 void draw() {
   background(cBack);
-  
+
   if (levelStatus == STARTED) {
     for (Body obj : level.mapBodies) {
       PVector force = obj.GetForce(ship);
@@ -90,6 +90,53 @@ void draw() {
     text("You Win", width / 2 - 100, height/2 - 100);
   }
   // Always update map bodies
+  Guide guide;
+  if (levelStatus == NOTSTARTED) {
+    guide = new Guide(level.shipLoc, shipMass);
+    if (ship.location.dist(new PVector(mouseX, mouseY)) < shipPushRadius) {
+      PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), guide.location);
+      println(initialPush.mag());
+      float strength = map(initialPush.mag(), 1, 100, 1, 10);
+      initialPush.setMag(strength);
+      guide.ApplyForce(initialPush);
+      guide.Update();
+      guide.Draw();
+
+
+      PVector guideLocation = guide.location.copy();
+      PVector prevDistance = guide.location.copy();
+      boolean crashed = false;
+      while (ship.location.dist(guideLocation) < 450 && crashed == false) { // Num Updates
+        println(ship.location.dist(guideLocation));
+        for (Body obj : level.mapBodies) {
+          if (obj.Collision(guide)) {
+            crashed = true;
+            break;
+          } else {
+            PVector force = obj.GetForce(guide);
+            guide.ApplyForce(force);
+          }
+        }
+
+        for (Obstacle obs : level.mapObstacles) {
+          if (obs.Collision(ship)) {
+            crashed = true;
+            break;
+          }
+        }
+
+        guide.Update();
+        guideLocation.x = guide.location.x;
+        guideLocation.y = guide.location.y;
+
+        if (prevDistance.dist(guideLocation) >= 10) {
+          prevDistance = guideLocation.copy();
+          guide.Draw();
+        }
+      }
+    }
+  }
+
   for (Body obj : level.mapBodies) {
     obj.Update();
     if (obj.Collision(ship)) {
@@ -133,5 +180,5 @@ void mouseClicked() {
 void keyPressed() {
   levelStatus = NOTSTARTED;
   level = lvlMgr.getLevel();
-  ship = new Ship(level.shipLoc, 5);
+  ship = new Ship(level.shipLoc, shipMass);
 }
