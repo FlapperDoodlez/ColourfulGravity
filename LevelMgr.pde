@@ -14,7 +14,10 @@ class LevelMgr {
       Body n = b.clone();
       r.mapBodies.add(n);
     }
-    
+    for (Obstacle obs: cLevel.mapObstacles){
+       Obstacle n = obs.clone();
+       r.mapObstacles.add(n);
+    }
     for (Body b : cLevel.menuBodies){
       Body n = b.clone();
       r.menuBodies.add(n);

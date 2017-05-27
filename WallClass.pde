@@ -1,7 +1,6 @@
 class Wall extends Obstacle {
   PVector point1;
   PVector point2;
-  color colour;
 
   void Update() {
     pushMatrix();
@@ -32,5 +31,12 @@ class Wall extends Obstacle {
 
   String Save() {
     return String.format("%s %s %s %s %s %s", WALL, point1.x, point1.y, point2.x, point2.y, colour);
+  }
+  
+  Wall clone(){
+    Wall clone = (Wall) super.clone();
+    clone.point1 = new PVector (point1.x, point1.y);
+    clone.point2 = new PVector (point2.x, point2.y);
+    return clone;
   }
 }
