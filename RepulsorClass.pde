@@ -18,6 +18,6 @@ class Repulsor extends Body {
   }
 
   String Save(int menu) {
-    return String.format("%s %s %s %s %s %s %s", REPULSOR, location.x, location.y, mass, radius, active_radius, colour, menu);
+    return String.format("%s %s %s %s %s %s %s %s", REPULSOR, location.x, location.y, mass, radius, active_radius, colour, menu);
   }
 }

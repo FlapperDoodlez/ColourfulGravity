@@ -35,24 +35,27 @@ ArrayList<Level> ReadLevels() {
       currLevel = new Level(int(line[1]), int(line[2]), int(line[3]), int(line[4]));
       break;
     case "0": // Planet
-      Planet p = new Planet(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
-      currLevel.mapBodies.add(p);
-      if (int(line[6]) == 1) {
+      Planet p = new Planet(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
+      if (int(line[7]) == 1) {
         currLevel.menuBodies.add(p);
+      } else {
+        currLevel.mapBodies.add(p);
       }
       break;
     case "1": // Gravity Well
-      GravityWell g = new GravityWell(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
-      currLevel.mapBodies.add(g);
-      if (int(line[6]) == 1) {
+      GravityWell g = new GravityWell(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
+      if (int(line[7]) == 1) {
         currLevel.menuBodies.add(g);
+      } else {
+        currLevel.mapBodies.add(g);
       }
       break;
     case "2": // Repulsor
-      Repulsor r = new Repulsor(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
-      currLevel.mapBodies.add(r);
-      if (int(line[6]) == 1) {
+      Repulsor r = new Repulsor(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
+      if (int(line[7]) == 1) {
         currLevel.menuBodies.add(r);
+      } else {
+        currLevel.mapBodies.add(r);
       }
       break;
     case "3": // Wall
