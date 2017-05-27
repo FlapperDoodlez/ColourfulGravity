@@ -24,4 +24,9 @@ class Planet extends Body {
   String Save(int menu) {
     return String.format("%s %s %s %s %s %s %s %s", PLANET, location.x, location.y, mass, radius, active_radius, colour, menu);
   }
+  
+  Planet clone(){
+      Planet clone = (Planet) super.clone();
+      return clone;
+  }
 }

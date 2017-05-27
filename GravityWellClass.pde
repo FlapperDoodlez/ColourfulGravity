@@ -29,4 +29,9 @@ class GravityWell extends Body {
   String Save(int menu) {
     return String.format("%s %s %s %s %s %s %s %s", GRAVITYWELL, location.x, location.y, mass, radius, active_radius, colour, menu);
   }
+  
+  GravityWell clone(){
+      GravityWell clone = (GravityWell) super.clone();
+      return clone;
+  }
 }

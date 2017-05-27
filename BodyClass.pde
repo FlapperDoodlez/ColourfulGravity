@@ -1,4 +1,4 @@
-abstract class Body {
+abstract class Body implements Cloneable{
   PVector location;
   PVector oLocation;
   float mass = 1;
@@ -30,4 +30,18 @@ abstract class Body {
     return menu + "";
   }
   
+  Body clone(){
+    try {
+      Body clone = (Body) super.clone();
+      clone.location= new PVector(location.x,location.y);
+      clone.oLocation= new PVector(oLocation.x,oLocation.y);
+      clone.mass = mass;
+      clone.radius = radius;
+      clone.active_radius = radius;
+      clone.colour = colour;
+      return clone;
+    } catch (CloneNotSupportedException e){
+      throw new RuntimeException("this can't happen", e);
+    }
+  }
 }

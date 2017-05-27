@@ -1,5 +1,4 @@
 class Repulsor extends Body {
-  color colour;
 
   void Draw() {
     fill(colour);
@@ -26,5 +25,10 @@ class Repulsor extends Body {
 
   String Save(int menu) {
     return String.format("%s %s %s %s %s %s %s %s", REPULSOR, location.x, location.y, mass, radius, active_radius, colour, menu);
+  }
+  
+  Repulsor clone(){
+      Repulsor clone = (Repulsor) super.clone();
+      return clone;
   }
 }

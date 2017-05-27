@@ -8,7 +8,19 @@ class LevelMgr {
   }
 
   Level getLevel() {
-    return levels.get(curLevel);
+    Level cLevel = levels.get(curLevel);
+    Level r = new Level(cLevel.shipLoc.x, cLevel.shipLoc.y, cLevel.goal.oLocation.x, cLevel.goal.oLocation.y);
+    for (Body b : cLevel.mapBodies){
+      Body n = b.clone();
+      r.mapBodies.add(n);
+    }
+    
+    for (Body b : cLevel.menuBodies){
+      Body n = b.clone();
+      r.menuBodies.add(n);
+    }
+    return r;
+    //return levels.get(curLevel);
   }
 
   Level getNextLevel() {

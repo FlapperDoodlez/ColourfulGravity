@@ -1,4 +1,4 @@
-class Finish extends Body {
+class Finish extends Body{
   
   Finish(float x, float y) {
     oLocation = new PVector(x, y);
@@ -18,5 +18,10 @@ class Finish extends Body {
     pushMatrix();
     translate(location.x, location.y);
     popMatrix();
+  }
+  
+  Finish clone(){
+      Finish clone = (Finish) super.clone();
+      return clone;
   }
 }
