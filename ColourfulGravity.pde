@@ -20,16 +20,16 @@ void draw() {
   for (Body obj : level.mapBodies) {
     obj.Update();
   }
-  
+
   for (Obstacle obs : level.mapObstacles) {
     obs.Update();
   }
-  
+
   Finish goal = level.goal;
-  
+
   ship.Update();
   goal.Update();
-  
+
   if (goal.Collision(ship)) {
     if (lvlMgr.getNextLevel() == null) {
       // You win!

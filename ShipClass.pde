@@ -2,21 +2,21 @@ class Ship extends Body {
   PVector velocity;
   PVector acceleration;
   color colour;
-  
-Ship(PVector initial_position, float Mass, color Colour) {
-  mass = Mass;
-  colour = Colour;
-  location = oLocation = initial_position;
-}
 
-void ApplyForce(PVector force) {
+  Ship(PVector initial_position, float Mass, color Colour) {
+    mass = Mass;
+    colour = Colour;
+    location = oLocation = initial_position;
+  }
+
+  void ApplyForce(PVector force) {
     PVector f = PVector.div(force, mass);
     acceleration.add(f);
     velocity.add(acceleration);
     oLocation.add(velocity);
-    acceleration.x = acceleration.y = 0;    
+    acceleration.x = acceleration.y = 0;
   }
-  
+
   void Update() {
     pushMatrix();
     translate(location.x, location.y);

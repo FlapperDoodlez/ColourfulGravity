@@ -5,7 +5,7 @@ class Level {
   Finish goal;
   ArrayList<Body> mapBodies;
   ArrayList<Obstacle> mapObstacles;
-  ArrayList<Body> menuBodies; 
+  ArrayList<Body> menuBodies;
 }
 
 
@@ -27,7 +27,7 @@ class LevelMgr {
     if (curLevel-1 == numLevels) { 
       return null;
     }
-    ++curlevel;
+    ++curLevel;
     return levels.get(curLevel+1);
   }
 }

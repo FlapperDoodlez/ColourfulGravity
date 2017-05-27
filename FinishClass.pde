@@ -1,11 +1,11 @@
 class Finish extends Body {
   color colour;
-  
+
   Finish(PVector Location) {
     location = oLocation = Location;
     radius = 25;
   }
-  
+
   void Update() {
     pushMatrix();
     ellipse(location.x, location.y, 25, 25);
