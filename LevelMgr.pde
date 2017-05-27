@@ -23,7 +23,6 @@ class LevelMgr {
       r.menuBodies.add(n);
     }
     return r;
-    //return levels.get(curLevel);
   }
 
   Level getNextLevel() {
