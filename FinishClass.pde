@@ -11,12 +11,15 @@ class Finish extends Body{
     noStroke();
     fill(colour);
     ellipse(0, 0, radius, radius);
-    text('\u272a', location.x, location.y);
+    fill(33, 33, 33);
+    textSize(27);
+    text('\u272a', -13, 10);
   }
   
   void Update() {
     pushMatrix();
     translate(location.x, location.y);
+    Draw();
     popMatrix();
   }
   
