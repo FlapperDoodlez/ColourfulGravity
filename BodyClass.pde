@@ -37,7 +37,7 @@ abstract class Body implements Cloneable{
       clone.oLocation= new PVector(oLocation.x,oLocation.y);
       clone.mass = mass;
       clone.radius = radius;
-      clone.active_radius = radius;
+      clone.active_radius = active_radius;
       clone.colour = colour;
       return clone;
     } catch (CloneNotSupportedException e){
