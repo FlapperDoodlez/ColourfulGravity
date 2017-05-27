@@ -1,41 +1,29 @@
 
-
-class LevelMgr{
-    int curLevel;
-    final int numLevels = 5;
-    ArrayList<Level> levels;
-
-    LevelMgr(){
-        curLevel = 0;
-        levels = new ArrayList<Level>(numLevels);
-
-        for (int i = 0; i < numLevels; i++){
-            levels.add(new Level());
-        }
-    }
-
-    static Level getLevel(){
-        return levels[curLevel];
-    }
-
-    static Level getNextLevel(){
-        if (curLevel-1 == numLevels) { return NULL; }
-        return levels[curLevel+1]
-    }
-
+//Each Level instance gets filled by ReadLevels();
+class Level {
+  ArrayList<Body> mapBodies;
+  ArrayList<Obstacle> mapObstacle;
 }
 
-class Level{
-    ArrayList<Body> mapBodies;
-    ArrayList<Obstacle> mapObstacle;
-    
-    Level(){
-        //read from file and init mapBodies
-        //read from file and init mapObstacle
+
+class LevelMgr {
+  int curLevel;
+  final int numLevels = 5;
+  ArrayList<Level> levels;
+
+  LevelMgr() {
+    curLevel = 0;
+    levels = ReadLevels();
+  }
+
+  Level getLevel() {
+    return levels.get(curLevel);
+  }
+
+  Level getNextLevel() {
+    if (curLevel-1 == numLevels) { 
+      return null;
     }
-    
-    void LoadLevel(int levelID){
-  
-  
-    }
+    return levels.get(curLevel+1);
+  }
 }
