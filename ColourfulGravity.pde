@@ -68,7 +68,6 @@ void draw() {
     for (Body obj : level.mapBodies) {
       PVector force = obj.GetForce(ship);
       ship.ApplyForce(force);
-      println(force);
     }
   } else if (levelStatus == NOTSTARTED) {
     ui.Draw();
@@ -97,7 +96,6 @@ void draw() {
     guide = new Guide(level.shipLoc, shipMass);
     if (ship.location.dist(new PVector(mouseX, mouseY)) < shipPushRadius) {
       PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), guide.location);
-      println(initialPush.mag());
       float strength = map(initialPush.mag(), 1, 100, 1, 10);
       initialPush.setMag(strength);
       guide.ApplyForce(initialPush);
@@ -109,7 +107,6 @@ void draw() {
       PVector prevDistance = guide.location.copy();
       boolean crashed = false;
       while (ship.location.dist(guideLocation) < 450 && crashed == false) { // Num Updates
-        println(ship.location.dist(guideLocation));
         for (Body obj : level.mapBodies) {
           if (obj.Collision(guide)) {
             crashed = true;
@@ -121,7 +118,7 @@ void draw() {
         }
 
         for (Obstacle obs : level.mapObstacles) {
-          if (obs.Collision(ship)) {
+          if (obs.Collision(guide)) {
             crashed = true;
             break;
           }
@@ -154,7 +151,8 @@ void draw() {
   }
 
   Finish goal = level.goal;
-
+  PVector goalForce = goal.GetForce(ship);
+  ship.ApplyForce(goalForce);
   ship.Update();
   goal.Update();
 
@@ -175,7 +173,6 @@ void mouseClicked() {
     levelStatus = STARTED;
   }
   PVector mousePoint = new PVector(mouseX, mouseY);
-  println(mousePoint);
   ui.checkItems(mousePoint);
 }
 

@@ -1,7 +1,7 @@
 abstract class Body implements Cloneable {
   PVector location;
   PVector oLocation;
-  float mass = 1;
+  float mass = 5;
   float radius;
   float active_radius = 500;
   color colour;
