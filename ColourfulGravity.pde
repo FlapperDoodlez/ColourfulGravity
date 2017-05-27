@@ -22,7 +22,7 @@ void setup() {
   Wall left = new Wall (0, 0, 0, height, color(33, 33, 33));
   Wall right = new Wall (width, 0, width, height, color(33, 33, 33));
   Wall upper = new Wall (0, 0, width, 0, color(33, 33, 33));
-  Wall lower = new Wall (0, height, width, height, color(33, 33, 33));
+  Wall lower = new Wall (0, mapHeight, width, mapHeight, color(33, 33, 33));
 
   lev.mapObstacles.add(left);
   lev.mapObstacles.add(right);

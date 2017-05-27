@@ -11,7 +11,7 @@ class UIMgr {
   }
 
   void placeSelected(PVector click) {
-    if (click.y >= height-menuOffset) {
+    if (click.y >= mapHeight) {
       return;
     }
 

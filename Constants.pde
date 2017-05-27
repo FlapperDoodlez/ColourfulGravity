@@ -40,4 +40,4 @@ final int GREEN = 2;
 final int PURPLE = 3;
 final int YELLOW = 4;
 
-final int mapHeight = height-75;
+final int mapHeight = 600-75;
