@@ -5,6 +5,7 @@ class Finish extends Body{
     location = new PVector(x, y);
     radius = 25;
     colour = cGoal;
+    colourType = 4; // yellow
   }
   
   void Draw() {

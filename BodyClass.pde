@@ -5,6 +5,7 @@ abstract class Body implements Cloneable{
   float radius;
   float active_radius = 500;
   color colour;
+  int colourType; // Red = 0, Blue = 1, Green = 2, Purple = 3, Yellow = Finish = 4
     
   PVector GetForce(Body b) {
     PVector force = PVector.sub(location, b.location);

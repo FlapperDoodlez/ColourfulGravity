@@ -12,13 +12,14 @@ class Planet extends Body {
     popMatrix();
   }
 
-  Planet(float x, float y, float mass, float radius, float active_radius, color colour) {
+  Planet(float x, float y, float mass, float radius, float active_radius, int colourType) {
     location = new PVector(x, y);
     oLocation = new PVector(x, y);
     this.mass = mass;
     this.radius = radius;
     this.active_radius = active_radius;
-    this.colour = colour;
+    this.colourType = colourType;
+    colour = getColour(colourType);
   }
 
   String Save(int menu) {
