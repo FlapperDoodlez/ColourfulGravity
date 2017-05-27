@@ -10,7 +10,7 @@ class Repulsor extends Body {
 
   Repulsor(float x, float y, float mass, float radius, color colour) {
     location = new PVector(x, y);
-    this.mass = mass;
+    this.mass = -(mass);
     this.radius = radius;
     this.colour = colour;
   }
