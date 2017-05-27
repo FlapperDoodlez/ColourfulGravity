@@ -1,4 +1,4 @@
-Class Repulsor extends Body implements Serializable{
+class Repulsor extends Body implements Serializable{
   color colour;
 
   void Update() {
@@ -9,6 +9,9 @@ Class Repulsor extends Body implements Serializable{
   }
   
   Repulsor(float x, float y, float mass, float radius, color colour){
-    
+    location = new PVector(x,y);
+    this.mass = mass;
+    this.radius = radius;
+    this.colour = colour;
   }
 }
