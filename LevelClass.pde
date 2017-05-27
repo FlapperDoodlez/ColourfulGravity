@@ -1,8 +1,11 @@
 
 //Each Level instance gets filled by ReadLevels();
 class Level {
+  PVector shipLoc;
+  Finish goal;
   ArrayList<Body> mapBodies;
-  ArrayList<Obstacle> mapObstacle;
+  ArrayList<Obstacle> mapObstacles;
+  ArrayList<Body> menuBodies; 
 }
 
 
