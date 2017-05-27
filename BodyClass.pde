@@ -34,17 +34,24 @@ abstract class Body implements Cloneable {
 
     switch (colourType) {
     case RED:
-      r += random(150, 256);
+      r += random(170, 256);
+      g -= 20;
+      b -= 20;
       break;
     case BLUE:
-      b += random(150, 256);
+      r -= 20;
+      b -= 20;
+      b += random(160, 210);
       break;
     case GREEN:
-      g += random(150, 256);
+      r -= 20;
+      g += random(120, 150);
+      b -= 20;
       break;
     case PURPLE:
-      r += random(150, 256);
-      b += random(150, 256);
+      r += random(100, 120);
+      b += random(100, 120);
+      g -= 20;
       break;
     }
     return color(r / 2f, g / 2f, b / 2f);
