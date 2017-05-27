@@ -39,4 +39,14 @@ class Pickup extends Body {
     }
     return false;
   }
+  
+  String Save(int menu){
+    return String.format("%s %s %s %s %s %s", PICKUP, location.x, location.y,  radius, colourType, menu);
+  }
+  
+  Pickup clone(){
+    Pickup clone = (Pickup) super.clone();
+    clone.visible = true;
+    return clone;
+  }
 }
