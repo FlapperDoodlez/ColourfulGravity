@@ -27,4 +27,16 @@ class Pickup extends Body {
     stroke(50);
     line(0, (.25)*radius, 0, -(.25)*radius);
   }
+  
+  boolean Collision(Body b){
+    if (visible){
+      bool collide= super.Collision(b);
+      if (collide){
+        b.colourType= this.colourType;
+        b.colour = getColour(colourType);
+        visible = false;
+      }
+    }
+    return false;
+  }
 }
