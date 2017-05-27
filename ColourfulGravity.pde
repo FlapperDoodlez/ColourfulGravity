@@ -41,14 +41,13 @@ void setup() {
   Planet med2 = new Planet(200, 200, medMass, medRad, medRad, cMed);
   Planet high1 = new Planet(300, 100, highMass, highRad, highRad, cHigh);
   Planet high2 = new Planet(300, 200, highMass, highRad, highRad, cHigh);
-  Planet well1 = new Planet(400, 100, wellMass, wellRad, wellRad, cWell);
-  Planet well2 = new Planet(400, 200, highMass, wellRad, wellRad, cWell);
-
+  GravityWell well1 = new GravityWell(400, 100, wellMass, 20, 100, cWell);
+  GravityWell well2 = new GravityWell(400, 200, highMass, 20, 100, cWell);
+  
   lev.mapBodies.add(low2);
   lev.mapBodies.add(med2);
   lev.mapBodies.add(high2);
   lev.mapBodies.add(well2);
-
 
   lev.menuBodies.add(low1);
   lev.menuBodies.add(med1);
