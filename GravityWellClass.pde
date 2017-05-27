@@ -1,5 +1,5 @@
-class GravityWell extends Body implements Serializable{
-  color colour;
+class GravityWell extends Body {
+  int colour;
 
   void Update() {
     pushMatrix();
@@ -14,9 +14,13 @@ class GravityWell extends Body implements Serializable{
 
   GravityWell(float x, float y, float mass, float radius, color colour) {
     location = new PVector(x, y);
-    oLocation = location;
+    oLocation = new PVector(x, y);
     this.colour = colour;
     this.mass = mass;
     this.radius = radius;
+  }
+  
+  String Save(int menu) {
+    return String.format("%s %s %s %s %s %s %s", GRAVITYWELL, location.x, location.y, mass, radius, colour, menu);
   }
 }

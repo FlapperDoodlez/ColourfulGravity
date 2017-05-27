@@ -1,34 +1,67 @@
-import java.io.*;
-void WriteLevels(ArrayList<Level> al) {
-  try {
-    FileOutputStream fos = new FileOutputStream("levels.dat");
-    ObjectOutputStream oos = new ObjectOutputStream(fos);
-    oos.writeObject(al);
-    oos.close();
-    fos.close();
-  } 
-  catch (IOException ioe) {
-    ioe.printStackTrace();
+void WriteLevels(ArrayList<Level> levels) {
+  PrintWriter output = createWriter("levels.txt");
+  for (Level level : levels) {
+    output.println(level.Save());
+
+    for (Body mapBody : level.mapBodies) {
+      output.println(mapBody.Save(0));
+    }
+
+    for (Obstacle mapObstacle : level.mapObstacles) {
+      output.println(mapObstacle.Save());
+    }
+
+    for (Body menuBody : level.menuBodies) {
+      output.println(menuBody.Save(1));
+    }
+    output.flush();
   }
+
+  output.close();
 }
 
 ArrayList<Level> ReadLevels() {
-  ArrayList<Level> arrayList;
-  try {
-    FileInputStream fis = new FileInputStream("levels.dat");
-    ObjectInputStream ois = new ObjectInputStream(fis);
-    arrayList = (ArrayList<Level>) ois.readObject();
-    ois.close();
-    fis.close();
+  ArrayList<Level> levels = new ArrayList<Level>();
+  String[] data = loadStrings("levels.txt");
+
+  String[] firstLine = splitTokens(data[0]);
+  Level currLevel = new Level(int(firstLine[1]), int(firstLine[2]), int(firstLine[3]), int(firstLine[4]));
+
+  for (int i = 1; i < data.length; ++i) {
+    String[] line = splitTokens(data[i]);
+    switch (line[0]) {
+    case "-1": // new Level
+      levels.add(currLevel); // Add old level
+      currLevel = new Level(int(line[1]), int(line[2]), int(line[3]), int(line[4]));
+      break;
+    case "0": // Planet
+      Planet p = new Planet(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
+      currLevel.mapBodies.add(p);
+      if (int(line[6]) == 1) {
+        currLevel.menuBodies.add(p);
+      }
+      break;
+    case "1": // Gravity Well
+      GravityWell g = new GravityWell(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
+      currLevel.mapBodies.add(g);
+      if (int(line[6]) == 1) {
+        currLevel.menuBodies.add(g);
+      }
+      break;
+    case "2": // Repulsor
+      Repulsor r = new Repulsor(float(line[1]), float(line[2]), int(line[3]), int(line[4]), int(line[5]));
+      currLevel.mapBodies.add(r);
+      if (int(line[6]) == 1) {
+        currLevel.menuBodies.add(r);
+      }
+      break;
+    case "3": // Wall
+      Wall w = new Wall(float(line[1]), float(line[2]), float(line[3]), float(line[4]), int(line[5]));
+      currLevel.mapObstacles.add(w);
+      break;
+    }
   }
-  catch(IOException ioe) {
-    ioe.printStackTrace();
-    return null;
-  }
-  catch(ClassNotFoundException c) {
-    System.out.println("Class not found");
-    c.printStackTrace();
-    return null;
-  }
-  return arrayList;
+  levels.add(currLevel);
+
+  return levels;
 }

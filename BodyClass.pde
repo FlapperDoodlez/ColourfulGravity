@@ -1,21 +1,23 @@
-abstract class Body implements Serializable{
+abstract class Body {
   PVector location;
   PVector oLocation;
   float mass = 1;
   float radius;
-
+    
   PVector GetForce(Body b) {
     PVector force = PVector.sub(location, b.location);
-    float d = max(force.mag(), 10);
+    float d = max(force.mag(), radius);
     force.setMag((G * mass * b.mass )/(d * d));
     return force;
   }
   abstract void Update();
 
   boolean Collision(Body b) {
-    float dist = sqrt((location.x - b.location.x)*(location.x - b.location.x)
-      + (location.y - b.location.y)*(location.y - b.location.y));
-    if (dist > radius + b.radius) return true;
-    return false;
+    float dist = location.dist(b.location);
+    return (dist < radius);
+  }
+  
+  String Save(int menu) {
+    return menu + "";
   }
 }

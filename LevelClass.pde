@@ -6,28 +6,16 @@ class Level {
   ArrayList<Body> mapBodies;
   ArrayList<Obstacle> mapObstacles;
   ArrayList<Body> menuBodies;
-}
-
-
-class LevelMgr {
-  int curLevel;
-  final int numLevels = 5;
-  ArrayList<Level> levels;
-
-  LevelMgr() {
-    curLevel = 0;
-    levels = ReadLevels();
+  
+  Level(float x, float y, float goalX, float goalY) {
+    shipLoc = new PVector(x, y);
+    goal = new Finish(goalX, goalY);
+    mapBodies = new ArrayList<Body>();
+    mapObstacles = new ArrayList<Obstacle>();
+    menuBodies = new ArrayList<Body>();
   }
-
-  Level getLevel() {
-    return levels.get(curLevel);
-  }
-
-  Level getNextLevel() {
-    if (curLevel-1 == numLevels) { 
-      return null;
-    }
-    ++curLevel;
-    return levels.get(curLevel+1);
+  
+  String Save() {
+    return String.format("%s %s %s %s %s", LEVEL, shipLoc.x, shipLoc.y, goal.location.x, goal.location.y);
   }
 }

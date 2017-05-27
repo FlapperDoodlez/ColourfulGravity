@@ -1,4 +1,4 @@
-class Wall extends Obstacle implements Serializable{
+class Wall extends Obstacle {
   PVector point1;
   PVector point2;
   color colour;
@@ -28,5 +28,9 @@ class Wall extends Obstacle implements Serializable{
     this.colour= colour;
     point1= new PVector(x1, y1);
     point2= new PVector(x2, y2);
+  }
+
+  String Save() {
+    return String.format("%s %s %s %s %s %s", WALL, point1.x, point1.y, point2.x, point2.y, colour);
   }
 }

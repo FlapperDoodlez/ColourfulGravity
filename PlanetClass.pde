@@ -1,4 +1,4 @@
-class Planet extends Body implements Serializable{
+class Planet extends Body {
   color colour;
 
   void Update() {
@@ -14,5 +14,9 @@ class Planet extends Body implements Serializable{
     this.mass = mass;
     this.radius = radius;
     this.colour = colour;
+  }
+  
+  String Save(int menu) {
+    return String.format("%s %s %s %s %s %s %s", PLANET, location.x, location.y, mass, radius, colour, menu);
   }
 }
