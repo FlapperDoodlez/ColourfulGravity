@@ -3,11 +3,11 @@ abstract class Body {
   PVector oLocation;
   float mass = 1;
   float radius;
-  final float ACTIVE_RADIUS= 500;
+  float active_radius = 500;
     
   PVector GetForce(Body b) {
     PVector force = PVector.sub(location, b.location);
-    if (force.mag() > ACTIVE_RADIUS){
+    if (force.mag() > active_radius){
       force.x = 0;
       force.y = 0;
       return force;
