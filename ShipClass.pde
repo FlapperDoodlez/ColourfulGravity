@@ -1,9 +1,12 @@
 class Ship extends Body {
   PVector velocity;
   PVector acceleration;
+  color colour;
   
-Ship(float Mass, color colour) {
-  
+Ship(PVector initial_position, float Mass, color Colour) {
+  mass = Mass;
+  colour = Colour;
+  location = oLocation = initial_position;
 }
 
 void ApplyForce(PVector force) {
