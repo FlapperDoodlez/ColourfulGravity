@@ -12,4 +12,11 @@ abstract class Body {
 
   }
   abstract void Update();
+  
+  boolean Collision(Body b) {
+    float dist = sqrt((location.x - b.location.x)*(location.x - b.location.x)
+    + (location.y - b.location.y)*(location.y - b.location.y));
+    if (dist > radius + b.radius) return true;
+    return false;
+  }
 }
