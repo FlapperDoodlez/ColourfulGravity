@@ -2,6 +2,7 @@ abstract class Body {
   PVector location;
   PVector oLocation;
   float mass = 1;
+  float radius;
   
   PVector GetForce(Body b) {
        PVector force = PVector.sub(location, b.location);
