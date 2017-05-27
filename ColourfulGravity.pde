@@ -13,6 +13,8 @@ void setup() {
   size(900, 600);
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
+  
+  levelsList.add(LevelOne());
 
   Level lev = new Level(25, height/2, width - 50, height/2);
   lev.mapBodies = new ArrayList<Body>();

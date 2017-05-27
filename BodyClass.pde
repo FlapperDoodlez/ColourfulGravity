@@ -24,7 +24,7 @@ abstract class Body implements Cloneable {
 
   boolean Collision(Body b) {
     float dist = location.dist(b.location);
-    return (dist < radius);
+    return (dist < .5*radius + b.radius);
   }
 
   color getColour(int colourType) {

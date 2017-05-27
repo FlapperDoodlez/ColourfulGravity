@@ -19,7 +19,10 @@ class Wall extends Obstacle {
     float nume= abs((point2.y-point1.y)*x0 - (point2.x-point1.x)*y0 + point2.x*point1.y - point2.y*point1.x);
     float denom= sqrt((point2.y - point1.y)*(point2.y - point1.y) + (point2.x - point1.x)*(point2.x - point1.x));
     dist = nume / denom;
-    if (dist<b.radius) return true;
+    float lineLen = point1.dist(point2) + b.radius; // make sure to add body radius
+    float dp1 = point1.dist(b.location);
+    float dp2 = point2.dist(b.location);
+    if (dist<b.radius && dp1 <= lineLen && dp2 <= lineLen) return true;
     return false;
   }
 
