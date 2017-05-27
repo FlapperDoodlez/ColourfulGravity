@@ -18,17 +18,18 @@ float shipPushRadius = 100;
 
 LevelMgr lvlMgr;
 Level level;
-UIMgr UI;
+UIMgr ui;
 
 void setup() {
   size(900, 400);
-  background(33, 33, 33);
+  background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
-  Level lev = new Level(width - 10, height/2, 50, 50);
+  
+  Level lev = new Level(50, height/2, width - 50, height/2);
   lev.mapBodies = new ArrayList<Body>();
-  lev.mapObstacles = new   ArrayList<Obstacle>();
-  lev.menuBodies = new   ArrayList<Body>();
-
+  lev.mapObstacles = new ArrayList<Obstacle>();
+  lev.menuBodies = new ArrayList<Body>();
+  
   Wall left = new Wall (0, 0, 0, height, color(33, 33, 33));
   Wall right = new Wall (width, 0, width, height, color(33, 33, 33));
   Wall upper = new Wall (0, 0, width, 0, color(33, 33, 33));
@@ -38,28 +39,47 @@ void setup() {
   lev.mapObstacles.add(right);
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
-
-  Planet b = new Planet(width/2, height/2, 450, 30, 300, cLow);  //need to send planet type
-  lev.mapBodies.add(b);
+  
+  Planet low1 = new Planet(100, 100, lowMass, lowRad, lowRad, cLow);
+  Planet low2 = new Planet(100, 200, lowMass, lowRad, lowRad, cLow);
+  Planet med1 = new Planet(200, 100, medMass, medRad, medRad, cMed);
+  Planet med2 = new Planet(200, 200, medMass, medRad, medRad, cMed);
+  Planet high1 = new Planet(300, 100, highMass, highRad, highRad, cHigh);
+  Planet high2 = new Planet(300, 200, highMass, highRad, highRad, cHigh);
+  Planet well1 = new Planet(400, 100, wellMass, wellRad, wellRad, cWell);
+  Planet well2 = new Planet(400, 200, highMass, wellRad, wellRad, cWell);
+  
+  lev.mapBodies.add(low2);
+  lev.mapBodies.add(med2);
+  lev.mapBodies.add(high2);
+  lev.mapBodies.add(well2);
+  
+  
+  lev.menuBodies.add(low1);
+  lev.menuBodies.add(med1);
+  lev.menuBodies.add(high1);
+  lev.menuBodies.add(well1);
+  
   levelsList.add(lev);
   WriteLevels(levelsList);
 
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
   ship = new Ship(level.shipLoc, 5);
+  ui = new UIMgr();
 
   //GUI Setup
-  cp5 = new ControlP5(this);
+  /*cp5 = new ControlP5(this);
   powSlider = cp5.addSlider("Power");
   powSlider.setPosition(20, height-40).setSize(100, 20);
   launchBtn = cp5.addButton("Launch");
-  launchBtn.setPosition(175, height-40).setSize(40, 20);
+  launchBtn.setPosition(175, height-40).setSize(40, 20);*/
 }
 
 void draw() {
-  background(33, 33, 33);
+  background(cBack);
 
-  UI.Draw();
+  ui.Draw();
 
   if (startedLevel) {
     for (Body obj : level.mapBodies) {

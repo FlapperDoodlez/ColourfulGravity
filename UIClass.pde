@@ -2,9 +2,9 @@ class UIMgr {
   ArrayList<Body> menuBodies = level.menuBodies;
   int nLow, nMed, nHigh, nWell;
   Body selected;
-  final int menux = 400;
-  final int menuy = height-30;
-  int offset = 0;
+  final int menux = 50;
+  final int menuy = height-(int)highRad;
+  int offset = 40;
   int count = 0;
   int m = 0;
   ArrayList<Integer> lowI = new ArrayList<Integer>();
@@ -45,7 +45,7 @@ class UIMgr {
     m = 0;
     for (int i = 0; i < nLow; i++){
         pushMatrix();
-        translate(menux+offset*count, menuy);
+        translate(menux+offset*(count+1), menuy);
         menuBodies.get(lowI.get(i+m)).Draw();
         popMatrix();
         ++count;
@@ -54,7 +54,7 @@ class UIMgr {
     m = 0;
     for (int i = 0; i < nMed; i++){
         pushMatrix();
-        translate(menux+offset*count, menuy);
+        translate(menux+offset*(count+1), menuy);
         menuBodies.get(medI.get(i+m)).Draw();
         popMatrix();
         ++count;
@@ -63,7 +63,7 @@ class UIMgr {
     m = 0;
     for (int i = 0; i < nHigh; i++){
         pushMatrix();
-        translate(menux+offset*count, menuy);
+        translate(menux+offset*(count+1), menuy);
         menuBodies.get(highI.get(i+m)).Draw();
         popMatrix();
         ++count;
@@ -72,7 +72,7 @@ class UIMgr {
     m = 0;
     for (int i = 0; i < nWell; i++){
         pushMatrix();
-        translate(menux+offset*count, menuy);
+        translate(menux+offset*(count+1), menuy);
         menuBodies.get(wellI.get(i+m)).Draw();
         popMatrix();
         ++count;
