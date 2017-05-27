@@ -14,17 +14,18 @@ class Repulsor extends Body {
     popMatrix();
   }
 
-  Repulsor(float x, float y, float mass, float radius, float active_radius, color colour) {
+  Repulsor(float x, float y, float mass, float radius, float active_radius, int colourType) {
     location = new PVector(x, y);
     oLocation = new PVector(x, y);
     this.active_radius = active_radius;
     this.mass = -(mass);
     this.radius = radius;
-    this.colour = colour;
+    this.colourType = colourType;
+    this.colour = getColour(colourType);
   }
 
   String Save(int menu) {
-    return String.format("%s %s %s %s %s %s %s %s", REPULSOR, location.x, location.y, mass, radius, active_radius, colour, menu);
+    return String.format("%s %s %s %s %s %s %s %s", REPULSOR, location.x, location.y, mass, radius, active_radius, colourType, menu);
   }
   
   Repulsor clone(){
