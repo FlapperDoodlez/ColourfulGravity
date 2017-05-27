@@ -1,6 +1,7 @@
 class UIMgr {
   ArrayList<Body> menuBodies = level.menuBodies;
   Body selected;
+  int selectInd;
   Boolean isSelected = false;
   final int menux = 35;
   final int menuy = height-35;
@@ -8,22 +9,24 @@ class UIMgr {
 
   UIMgr() {
     selected = null;
+    selectInd = -1;
   }
 
   void placeSelected(PVector click) {
     if (click.y >= mapHeight) {
+      selected = null;
+      selectInd = -1;
+      isSelected = false;
       return;
     }
 
-    for (int i = 0; i < menuBodies.size(); i++) {
-      if (selected == menuBodies.get(i)) {
-        println(selected + " was at " + i);
-        selected.location = click;
-        level.mapBodies.add(selected);
-        menuBodies.remove(i);
-        break;
-      }
-    }
+    selected.location = click;
+    level.mapBodies.add(selected);
+    menuBodies.remove(selectInd);
+
+    selected = null;
+    selectInd = -1;
+    isSelected = false;
   }
 
   void Draw() {
@@ -32,7 +35,10 @@ class UIMgr {
       translate(menux+offset*(i+1), menuy);
       menuBodies.get(i).Draw();
       noFill();
-      stroke(255);
+      stroke(cUnSelected);
+      if (selectInd == i) {
+        stroke(cSelected);
+      }
       strokeWeight(2);
       ellipse(0, 0, menuBufRad/2, menuBufRad/2);
       popMatrix();
@@ -55,6 +61,7 @@ class UIMgr {
       if (dist < menuBufRad) {
         selected = menuBodies.get(i);
         isSelected = true;
+        selectInd = i;
         println("selected: " +selected);
       }
     }
