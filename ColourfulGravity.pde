@@ -9,8 +9,6 @@ LevelMgr lvlMgr;
 Level level;
 UIMgr ui;
 
-PVector mousePoint;
-
 void setup() {
   size(900, 400);
   background(cBack);
@@ -51,6 +49,7 @@ void setup() {
   lev.menuBodies.add(well1);
 
   levelsList.add(lev);
+  
   WriteLevels(levelsList);
 
   lvlMgr = new LevelMgr();
@@ -61,14 +60,14 @@ void setup() {
 
 
 void draw() {
-  background(cback);
-
+  background(cBack);
   if (levelStatus == STARTED) {
     for (Body obj : level.mapBodies) {
       PVector force = obj.GetForce(ship);
       ship.ApplyForce(force);
     }
   } else if (levelStatus == NOTSTARTED) {
+    ui.Draw();
     fill(99, 213, 255, 200);
     ellipse(ship.location.x, ship.location.y, shipPushRadius * 2, shipPushRadius * 2);
 
@@ -123,8 +122,7 @@ void mouseClicked() {
     ship.ApplyForce(initialPush);
     levelStatus = STARTED;
   }
-  mousePoint.x = mouseX;
-  mousePoint.y = mouseY;
+  PVector mousePoint = new PVector(mouseX, mouseY);
   println(mousePoint);
   ui.checkItems(mousePoint);
 }

@@ -31,3 +31,9 @@ final int NOTSTARTED = -1;
 final int STARTED = 0;
 final int CRASHED = 1;
 final int FINISHED = 2;
+
+final int RED = 0;
+final int BLUE = 1;
+final int GREEN = 2;
+final int PURPLE = 3;
+final int YELLOW = 4;
