@@ -19,7 +19,7 @@ final float lowMass = 500;
 final float medMass = 1000;
 final float highMass = 1500;
 final float wellMass = 3000;
-
+final float menuBufRad = 50;
 
 final int LEVEL = -1;
 final int PLANET = 0;

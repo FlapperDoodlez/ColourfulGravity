@@ -1,12 +1,6 @@
-import controlP5.*;
-ControlP5 cp5;
-
 Ship ship;
 
 float G = 1;
-
-Slider powSlider;
-Button launchBtn;
 
 int levelStatus = -1; // -1, not started, 0 started, 1 crashed, 2 win condition
 float shipPushRadius = 100;
@@ -14,6 +8,8 @@ float shipPushRadius = 100;
 LevelMgr lvlMgr;
 Level level;
 UIMgr ui;
+
+PVector mousePoint;
 
 void setup() {
   size(900, 400);
@@ -65,7 +61,7 @@ void setup() {
 
 
 void draw() {
-  background(33, 33, 33);
+  background(cback);
 
   if (levelStatus == STARTED) {
     for (Body obj : level.mapBodies) {
@@ -127,4 +123,8 @@ void mouseClicked() {
     ship.ApplyForce(initialPush);
     levelStatus = STARTED;
   }
+  mousePoint.x = mouseX;
+  mousePoint.y = mouseY;
+  println(mousePoint);
+  ui.checkItems(mousePoint);
 }
