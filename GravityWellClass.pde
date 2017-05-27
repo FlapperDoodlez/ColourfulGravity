@@ -1,4 +1,4 @@
-class GravityWell extends Body {
+class GravityWell extends Body implements Serializable{
   color colour;
 
   void Update() {

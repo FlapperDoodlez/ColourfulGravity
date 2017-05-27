@@ -1,4 +1,4 @@
-Class Repulsor extends Body {
+Class Repulsor extends Body implements Serializable{
   color colour;
 
   void Update() {
@@ -9,6 +9,6 @@ Class Repulsor extends Body {
   }
   
   Repulsor(float x, float y, float mass, float radius, color colour){
-  
+    
   }
 }

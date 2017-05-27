@@ -1,4 +1,4 @@
-class Ship extends Body {
+class Ship extends Body implements Serializable{
   PVector velocity;
   PVector acceleration;
   color colour;

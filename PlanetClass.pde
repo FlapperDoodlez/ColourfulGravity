@@ -1,4 +1,4 @@
-class Planet extends Body {
+class Planet extends Body implements Serializable{
   color colour;
 
   void Update() {

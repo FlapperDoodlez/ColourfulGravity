@@ -1,4 +1,4 @@
-abstract class Body {
+abstract class Body implements Serializable{
   PVector location;
   PVector oLocation;
   float mass = 1;

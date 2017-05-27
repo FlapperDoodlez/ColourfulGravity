@@ -1,4 +1,4 @@
-class Wall extends Obstacle {
+class Wall extends Obstacle implements Serializable{
   PVector point1;
   PVector point2;
   color colour;
