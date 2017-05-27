@@ -2,11 +2,6 @@ import controlP5.*;
 ControlP5 cp5;
 
 Ship ship;
-int LEVEL = -1;
-int PLANET = 0;
-int GRAVITYWELL = 1;
-int REPULSOR = 2;
-int WALL = 3;
 
 float G = 1;
 
@@ -73,12 +68,12 @@ void setup() {
 void draw() {
   background(33, 33, 33);
 
-  if (levelStatus == 0) {
+  if (levelStatus == STARTED) {
     for (Body obj : level.mapBodies) {
       PVector force = obj.GetForce(ship);
       ship.ApplyForce(force);
     }
-  } else if (levelStatus == -1) {
+  } else if (levelStatus == NOTSTARTED) {
     fill(99, 213, 255, 200);
     ellipse(ship.location.x, ship.location.y, shipPushRadius * 2, shipPushRadius * 2);
 
@@ -88,11 +83,11 @@ void draw() {
       strokeWeight(1);
       ellipse(mouseX, mouseY, 10, 10);
     }
-  } else if (levelStatus == 1) {
+  } else if (levelStatus == CRASHED) {
     fill(255);
     textSize(32);
     text("Game Over Loser", width / 2 - 100, height/2 - 100);
-  } else if (levelStatus == 2) {
+  } else if (levelStatus == FINISHED) {
     fill(255);
     textSize(32);
     text("You Win", width / 2 - 100, height/2 - 100);
@@ -101,14 +96,14 @@ void draw() {
   for (Body obj : level.mapBodies) {
     obj.Update();
     if (obj.Collision(ship)) {
-      levelStatus = 1;
+      levelStatus = CRASHED;
     }
   }
 
   for (Obstacle obs : level.mapObstacles) {
     obs.Update();
     if (obs.Collision(ship)) {
-      levelStatus = 1;
+      levelStatus = CRASHED;
     }
   }
 
@@ -119,18 +114,18 @@ void draw() {
 
   if (goal.Collision(ship)) {
     if (lvlMgr.getNextLevel() == null) {
-      levelStatus = 2;
+      levelStatus = FINISHED;
     }
   }
 }
 
 void mouseClicked() {
-  if (levelStatus == -1 && ship.location.dist(new PVector(mouseX, mouseY)) < shipPushRadius) {
+  if (levelStatus == NOTSTARTED && ship.location.dist(new PVector(mouseX, mouseY)) < shipPushRadius) {
     PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), ship.location);
     println(initialPush.mag());
     float strength = map(initialPush.mag(), 1, 100, 1, 10);
     initialPush.setMag(strength);
     ship.ApplyForce(initialPush);
-    levelStatus = 0;
+    levelStatus = STARTED;
   }
 }
