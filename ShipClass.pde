@@ -23,6 +23,7 @@ class Ship extends Body {
   void Draw() {
     fill(colour);
     strokeJoin(ROUND);
+    strokeWeight(2);
 
     // Calculate the angle the ship needs to be rotated based on its current velocity
     PVector axis = new PVector(0, -1);

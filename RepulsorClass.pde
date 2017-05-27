@@ -1,8 +1,9 @@
 class Repulsor extends Body {
 
   void Draw() {
-    fill(colour);
-    noStroke();
+    noFill();
+    stroke(colour);
+    strokeWeight(4);
     ellipse(0, 0, radius, radius);
   }
 
