@@ -1,7 +1,7 @@
 import java.io.*;
-void ArrayList<Level> WriteLevels() {
-  FileOutputStream fos= new FileOutputStream("levels.dat");
-  ObjectOutputStream oos= new ObjectOutputStream(fos);
+void WriteLevels(ArrayList<Level> al) {
+  FileOutputStream fos = new FileOutputStream("levels.dat");
+  ObjectOutputStream oos = new ObjectOutputStream(fos);
   oos.writeObject(al);
   oos.close();
   fos.close();
