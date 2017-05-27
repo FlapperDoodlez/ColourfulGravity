@@ -4,10 +4,12 @@ class Wall extends Obstacle {
   color colour;
 
   void Update() {
+    pushMatrix();
     stroke(colour);
     strokeCap(ROUND);
     strokeWeight(4);
     line(point1.x, point1.y, point2.x, point2.y);
+    popMatrix()
   }
 
   boolean Collision(Body b) {
