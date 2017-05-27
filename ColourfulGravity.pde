@@ -18,6 +18,8 @@ float shipPushRadius = 100;
 
 LevelMgr lvlMgr;
 Level level;
+UIMgr UI;
+
 void setup() {
   size(900, 400);
   background(33, 33, 33);
@@ -56,6 +58,8 @@ void setup() {
 
 void draw() {
   background(33, 33, 33);
+
+  UI.Draw();
 
   if (startedLevel) {
     for (Body obj : level.mapBodies) {
