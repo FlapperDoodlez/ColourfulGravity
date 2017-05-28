@@ -18,7 +18,7 @@ void setup() {
   size(900, 500);
   background(cBack);
   textSize(40);
-
+  
   bodiesInMenu.add(new Planet((width/2) - 100, height/2 - 50, medMass, medRad, 0, BLUE)); // Med Planet
   obstaclesInMenu.add(new Wall((width/2) - 105, height/2 + 35, (width/2) - 95, height/2 + 65, cObstacle));
   bodiesInMenu.add(new Repulsor((width/2) - 100, height/2, lowMass, medRad, 0, GREEN)); // low Repulsor
@@ -27,7 +27,7 @@ void setup() {
   bodiesInMenu.add(new Planet((width/2) - 95, height/2 + 150, lowMass, lowRad, 0, PURPLE)); // low Planet
   bodiesInMenu.add(new Planet((width/2) - 115, height/2 + 150, medMass, medRad, 0, BLUE)); // med Planet
   bodiesInMenu.add(new Planet((width/2) - 145, height/2 + 150, highMass, highRad, 0, RED)); // High Planet
-
+  bodiesInMenu.add(new Finish((width/2) - 100, height/2 + 195));
 
   CreateLevels();
   lvlMgr = new LevelMgr();
@@ -57,7 +57,8 @@ void draw() {
     
     text("These attract the player (a lot), can pass through", (width/2) - 80, height/2 + 110);
     text("Size determines the strength", (width/2) - 80, height/2 + 155);
-
+    text("Get to here!", (width/2) - 80, height/2 + 200);
+    
     textSize(40);
     String m = "ColourfulGravity";
     float mLength = textWidth(m); 
