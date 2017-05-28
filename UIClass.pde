@@ -5,7 +5,7 @@ class UIMgr {
   Boolean isSelected = false;
   final int menux = 35;
   final int menuy = height-35;
-  int offset = (int)menuBufRad+5;
+  int offset = (int)menuBufDiameter+5;
 
   UIMgr() {
     selected = null;
@@ -32,7 +32,8 @@ class UIMgr {
   void Draw() {
     for (int i = 0; i < menuBodies.size(); i++) {
       pushMatrix();
-      translate(menux+offset*(i+1), menuy);
+      int x = menux+offset*(i+1);
+      translate(x, menuy);
       menuBodies.get(i).Draw();
       noFill();
       stroke(cUnSelected);
@@ -40,7 +41,7 @@ class UIMgr {
         stroke(cSelected);
       }
       strokeWeight(2);
-      ellipse(0, 0, menuBufRad/2, menuBufRad/2);
+      ellipse(0, 0, menuBufDiameter/2, menuBufDiameter/2);
       popMatrix();
     }
   }
@@ -58,7 +59,7 @@ class UIMgr {
       center.x = menux+offset*(i+1);
       center.y = menuy;
       dist = click.dist(center);
-      if (dist < menuBufRad) {
+      if (10 + dist < (menuBufDiameter / 2)) {
         selected = menuBodies.get(i);
         isSelected = true;
         selectInd = i;

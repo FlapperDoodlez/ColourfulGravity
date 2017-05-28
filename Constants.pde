@@ -21,7 +21,7 @@ final float lowMass = 200;
 final float medMass = 350;
 final float highMass = 500;
 final float wellMass = 800;
-final float menuBufRad = 80;
+final float menuBufDiameter = 80;
 final float shipMass = 2;
 final float shipRad = 12;
 
