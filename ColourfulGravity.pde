@@ -119,7 +119,8 @@ void draw() {
     textSize(32);
     text("You Win", width / 2 - 60, height/2 - 120);
     textSize(20);
-    text("Total Points: " + total_points, width / 2 - 80, height/2 - 90);
+    text("Total Points: " + level_points, width / 2 - 80, height/2 - 90);
+    text("or press R to get a better score", width / 2 - 140, height / 2 - 70);
   } else if (levelStatus == COMPLETED) {
     fill(textColour);
     textSize(32);
@@ -137,7 +138,6 @@ void draw() {
   if (levelStatus == STARTED && goal.Collision(ship)) {
     if (lvlMgr.finishedGame()) {
       levelStatus = FINISHED;
-      total_points = level_points;
     } else {
       levelStatus = COMPLETED;
     }
@@ -162,7 +162,7 @@ void mouseClicked() {
 
 void keyPressed() {
   if (levelStatus == COMPLETED || (key == 'r' || key == 'R')) {
-    if (levelStatus == FINISHED) {
+    if (levelStatus == FINISHED && !(key == 'r' || key == 'R')) {
       level = lvlMgr.restartGame();
       total_points = level_points = 0;
     } else if (levelStatus == COMPLETED && !(key == 'r' || key == 'R')) {
