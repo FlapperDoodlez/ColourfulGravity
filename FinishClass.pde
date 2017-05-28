@@ -4,6 +4,7 @@ class Finish extends Body{
     oLocation = new PVector(x, y);
     location = new PVector(x, y);
     radius = 25;
+    active_radius = medAct;
     colour = cGoal;
     colourType = 4; // yellow
   }

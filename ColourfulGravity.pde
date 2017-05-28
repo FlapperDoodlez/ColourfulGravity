@@ -13,7 +13,7 @@ void setup() {
   size(900, 600);
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
-  
+
   levelsList.add(LevelOne());
 
   Level lev = new Level(25, height/2, width - 50, height/2);
@@ -135,7 +135,12 @@ void draw() {
       }
     }
   }
-
+  for (Obstacle obs : level.mapObstacles) {
+    obs.Update();
+    if (obs.Collision(ship)) {
+      levelStatus = CRASHED;
+    }
+  }
   for (Body obj : level.mapBodies) {
     obj.Update();
     if (obj.Collision(ship)) {
@@ -143,22 +148,16 @@ void draw() {
     }
   }
 
-  for (Obstacle obs : level.mapObstacles) {
-    obs.Update();
-    if (obs.Collision(ship)) {
-      levelStatus = CRASHED;
-    }
-  }
 
-  Finish goal = level.goal;
-  /*PVector goalForce = goal.GetForce(ship);
-  ship.ApplyForce(goalForce); */
-  ship.Draw(); 
-  if (levelStatus == STARTED){
+  Finish goal = level.goal;  
+  if (levelStatus == STARTED) {
+    PVector goalForce = goal.GetForce(ship);
+    ship.ApplyForce(goalForce); 
     ship.Update();
+    println("force:" + goalForce.mag());
   }
   goal.Update();
-  println("ship location (x,y): (%s, %s)", ship.location.x, ship.location.y);
+  ship.Draw();
 
   if (goal.Collision(ship)) {
     if (lvlMgr.getNextLevel() == null) {
