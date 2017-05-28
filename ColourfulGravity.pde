@@ -3,14 +3,13 @@ Ship ship;
 float G = 1;
 
 int levelStatus = -1; // -1, not started, 0 started, 1 crashed, 2 win condition
-float shipPushRadius = 100;
 
 LevelMgr lvlMgr;
 Level level;
 UIMgr ui;
 
 void setup() {
-  size(900, 600);
+  size(900, 500);
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
 
@@ -85,9 +84,8 @@ void draw() {
       stroke(0);
       strokeWeight(1);
       ellipse(mouseX, mouseY, 10, 10);
-
-      DrawGuide();
     }
+    DrawGuide();
   } else if (levelStatus == CRASHED) {
     fill(255);
     textSize(32);
@@ -127,12 +125,12 @@ void draw() {
 }
 
 void mouseClicked() {
-  if (levelStatus == NOTSTARTED && ship.location.dist(new PVector(mouseX, mouseY)) < shipPushRadius) {
+  if (levelStatus == NOTSTARTED && mouseY <= mapHeight && !ui.isSelected) {
     PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), ship.location);
+    initialPush.limit(shipPushRadius);
     //PVector initialPush = new PVector(74, -67, 0);
     float strength = map(initialPush.mag(), 1, 100, 1, 10);
     initialPush.setMag(strength);
-    print("m");
     ship.ApplyForce(initialPush);
     levelStatus = STARTED;
   }
@@ -154,7 +152,8 @@ void DrawGuide() {
 
 
   PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), guide.location);
-  float strength = map(initialPush.mag(), 1, 100, 1, 10);
+  initialPush.limit(shipPushRadius);
+  float strength = map(initialPush.mag(), 1, shipPushRadius, 1, 10);
   initialPush.setMag(strength);
   guide.ApplyForce(initialPush);
   guide.Update();
@@ -163,7 +162,7 @@ void DrawGuide() {
   PVector guideLocation = guide.location.copy();
   PVector prevDistance = guide.location.copy();
   boolean crashed = false;
-  while (level.shipLoc.dist(guideLocation) < 900 && crashed == false) { // Num Updates
+  while (level.shipLoc.dist(guideLocation) < 1000 && crashed == false) { // Num Updates
     for (Body obj : level.mapBodies) {
       if (obj.Collision(guide)) {
         crashed = true;
@@ -173,11 +172,11 @@ void DrawGuide() {
         guide.ApplyForce(force);
       }
     }
-    
+
     if (goal.Collision(guide)) {
       crashed = true;
     }
-    
+
     PVector goalForce = goal.GetForce(guide);
     guide.ApplyForce(goalForce);
 
@@ -187,7 +186,7 @@ void DrawGuide() {
         break;
       }
     }
-    
+
     guide.Update();
     guideLocation.x = guide.location.x;
     guideLocation.y = guide.location.y;
