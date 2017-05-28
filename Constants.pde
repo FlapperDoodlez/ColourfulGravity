@@ -23,6 +23,7 @@ final float highMass = 500;
 final float wellMass = 800;
 final float menuBufRad = 80;
 final float shipMass = 2;
+final float shipRad = 12;
 
 final int LEVEL = -1;
 final int PLANET = 0;

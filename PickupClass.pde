@@ -28,7 +28,7 @@ class Pickup extends Body {
     line(0, (.25)*radius, 0, -(.25)*radius);
   }
   
-  boolean Collision(Body b){
+  boolean Collision(Ship b){
     if (visible){
       boolean collide= super.Collision(b);
       if (collide){

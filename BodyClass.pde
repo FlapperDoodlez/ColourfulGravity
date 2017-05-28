@@ -22,9 +22,30 @@ abstract class Body implements Cloneable {
   abstract void Update();
   abstract void Draw();
 
-  boolean Collision(Body b) {
+  boolean Collision(Ship b) {
     float dist = location.dist(b.location);
-    return (dist < .5*radius + b.radius);
+    if (dist > .5*radius + b.radius) return false;
+    pushMatrix();
+    translate(b.location.x, b.location.y);
+    float theta = PVector.angleBetween(b.velocity,location);
+    if (theta >= 2*PI/3) theta -= 2*PI/3;
+    float d = sin(PI/6)/sin((5*PI/6) - theta);
+    popMatrix();
+    if (dist <= d*shipRad + .5*radius) return true;
+    return false; 
+  }
+  
+  boolean Collision(Guide b) {
+    float dist = location.dist(b.location);
+    if (dist > .5*radius + b.radius) return false;
+    pushMatrix();
+    translate(b.location.x, b.location.y);
+    float theta = PVector.angleBetween(b.velocity,location);
+    if (theta >= 2*PI/3) theta -= 2*PI/3;
+    float d = sin(PI/6)/sin((5*PI/6) - theta);
+    popMatrix();
+    if (dist <= d*shipRad + .5*radius) return true;
+    return false; 
   }
 
   color getColour(int colourType) {

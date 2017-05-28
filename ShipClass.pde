@@ -10,7 +10,7 @@ class Ship extends Body {
     oLocation = initial_position.copy();
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
-    radius = 12;
+    radius = shipRad;
   }
 
   void ApplyForce(PVector force) {
