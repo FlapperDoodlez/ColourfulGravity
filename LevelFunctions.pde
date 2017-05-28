@@ -2,7 +2,7 @@ Level LevelOne(){
   Level lev = new Level(25, height*3/4, width - 50, height*3/4);
   
   // Bodies
-  Planet p = new Planet(width/2,mapHeight*4/5, highMass, highRad, highAct, RED);
+  Planet p = new Planet(width/2,mapHeight*4/5, medMass, medRad, medAct, RED);
   lev.mapBodies.add(p);
   
   // Obstacles

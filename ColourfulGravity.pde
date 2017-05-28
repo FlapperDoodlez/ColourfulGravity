@@ -151,10 +151,14 @@ void draw() {
   }
 
   Finish goal = level.goal;
-  PVector goalForce = goal.GetForce(ship);
-  ship.ApplyForce(goalForce);
-  ship.Update();
+  /*PVector goalForce = goal.GetForce(ship);
+  ship.ApplyForce(goalForce); */
+  ship.Draw(); 
+  if (levelStatus == STARTED){
+    ship.Update();
+  }
   goal.Update();
+  println("ship location (x,y): (%s, %s)", ship.location.x, ship.location.y);
 
   if (goal.Collision(ship)) {
     if (lvlMgr.getNextLevel() == null) {

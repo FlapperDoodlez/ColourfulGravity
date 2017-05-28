@@ -9,7 +9,7 @@ abstract class Body implements Cloneable {
 
   PVector GetForce(Body b) {
     PVector force = PVector.sub(location, b.location);
-    if (force.mag() > active_radius) {
+    if (force.mag() >= active_radius) {
       force.x = 0;
       force.y = 0;
       return force;

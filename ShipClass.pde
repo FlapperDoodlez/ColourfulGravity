@@ -21,6 +21,8 @@ class Ship extends Body {
   }
 
   void Draw() {
+    pushMatrix();
+    translate(location.x, location.y);
     fill(colour);
     strokeJoin(ROUND);
     strokeWeight(1);
@@ -35,12 +37,9 @@ class Ship extends Body {
     rotate(angle);
 
     triangle(0, -radius, radius * sqrt(3) / 2f, radius * 1/2f, radius * -sqrt(3)/2f, radius * 1/2f);
+    popMatrix();
   }
   void Update() {
-    location = oLocation;
-    pushMatrix();
-    translate(location.x, location.y);
-    Draw();
-    popMatrix();
+    location = oLocation.copy();
   }
 }
