@@ -34,6 +34,8 @@ final int PICKUP = 4;
 final int NOCOLTRI = 5;
 final int NOCOLRECT = 6;
 
+final int LOADINGSCREEN = -3;
+final int MENU = -2;
 final int NOTSTARTED = -1;
 final int STARTED = 0;
 final int CRASHED = 1;
