@@ -31,7 +31,7 @@ abstract class Body implements Cloneable {
     if (theta >= 2*PI/3) theta -= 2*PI/3;
     float d = sin(PI/6)/sin((5*PI/6) - theta);
     popMatrix();
-    if (dist <= d*shipRad + .5*radius) return true;
+    if (dist < d*shipRad + .45*radius) return true;
     return false; 
   }
   
@@ -44,7 +44,7 @@ abstract class Body implements Cloneable {
     if (theta >= 2*PI/3) theta -= 2*PI/3;
     float d = sin(PI/6)/sin((5*PI/6) - theta);
     popMatrix();
-    if (dist <= d*shipRad + .5*radius) return true;
+    if (dist < d*shipRad + .45*radius) return true;
     return false; 
   }
 

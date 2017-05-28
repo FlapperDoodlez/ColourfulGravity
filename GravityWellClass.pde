@@ -17,7 +17,7 @@ class GravityWell extends Body {
     popMatrix();
   }
 
-  boolean Collision(Body b) {
+  boolean Collision(Ship b) {
     return false;
   }
 
