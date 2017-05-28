@@ -28,8 +28,8 @@ abstract class Body implements Cloneable {
     pushMatrix();
     translate(b.location.x, b.location.y);
     float theta = PVector.angleBetween(b.velocity,location);
-    if (theta >= 2*PI/3) theta -= 2*PI/3;
-    float d = sin(PI/6)/sin((5*PI/6) - theta);
+    if (theta >= 2*PI/3f) theta -= 2*PI/3f;
+    float d = sin(PI/6f)/sin((5*PI/6f) - theta);
     popMatrix();
     if (dist < d*shipRad + .45*radius) return true;
     return false; 
