@@ -31,14 +31,14 @@ void setup() {
   lev.mapObstacles.add(r);
 
 
-  Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, 0);
-  Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, 1);
-  Planet med1 = new Planet(400, 150, medMass, medRad, medAct, 2);
-  Planet med2 = new Planet(400, 150, medMass, medRad, medAct, 3);
-  Planet high1 = new Planet(600, 300, highMass, highRad, highAct, 2);
-  Planet high2 = new Planet(600, 300, highMass, highRad, highAct, 1);
-  GravityWell well1 = new GravityWell(width - 80, 100, wellMass, wellRad, 100, 3);
-  GravityWell well2 = new GravityWell(width - 80, 100, highMass, wellRad, 100, 3);
+  Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, RED);
+  Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
+  Planet med1 = new Planet(400, 150, medMass, medRad, medAct, BLUE);
+  Planet med2 = new Planet(400, 150, medMass, medRad, medAct, GREEN);
+  Planet high1 = new Planet(600, 300, highMass, highRad, highAct, BLUE);
+  Planet high2 = new Planet(600, 300, highMass, highRad, highAct, RED);
+  GravityWell well1 = new GravityWell(width - 80, 100, wellMass, wellRad, 100, GREEN);
+  GravityWell well2 = new GravityWell(width - 80, 100, highMass, wellRad, 100, PURPLE);
 
   lev.mapBodies.add(low2);
   lev.mapBodies.add(med2);
@@ -86,14 +86,6 @@ void draw() {
       ellipse(mouseX, mouseY, 10, 10);
     }
     DrawGuide();
-  } else if (levelStatus == CRASHED) {
-    fill(255);
-    textSize(32);
-    text("Game Over", width / 2 - 80, height/2 - 100);
-  } else if (levelStatus == FINISHED) {
-    fill(255);
-    textSize(32);
-    text("You Win", width / 2 - 60, height/2 - 100);
   }
 
   for (Obstacle obs : level.mapObstacles) {
@@ -114,12 +106,28 @@ void draw() {
     }
   }
 
+  if (levelStatus == CRASHED) {
+    fill(255);
+    textSize(32);
+    text("Game Over", width / 2 - 80, height/2 - 120);
+  } else if (levelStatus == FINISHED) {
+    fill(255);
+    textSize(32);
+    text("You Win", width / 2 - 60, height/2 - 120);
+  } else if (levelStatus == COMPLETED) {
+    fill(255);
+    textSize(32);
+    text("Press any key to go to next level", width / 2 - 60, height/2 - 120);
+  }
+
   goal.Update();
   ship.Draw();
 
-  if (goal.Collision(ship)) {
+  if (levelStatus == STARTED && goal.Collision(ship)) {
     if (lvlMgr.getNextLevel() == null) {
       levelStatus = FINISHED;
+    } else {
+      levelStatus = COMPLETED;
     }
   }
 }
@@ -134,15 +142,19 @@ void mouseClicked() {
     ship.ApplyForce(initialPush);
     levelStatus = STARTED;
   }
-  PVector mousePoint = new PVector(mouseX, mouseY);
-  ui.checkItems(mousePoint);
+  if (levelStatus == NOTSTARTED) {
+    PVector mousePoint = new PVector(mouseX, mouseY);
+    ui.checkItems(mousePoint);
+  }
 }
 
 void keyPressed() {
-  levelStatus = NOTSTARTED;
-  level = lvlMgr.getLevel();
-  ui = new UIMgr();
-  ship = new Ship(level.shipLoc, shipMass);
+  if (levelStatus == COMPLETED || (key == 'r' || key == 'R')) {
+    levelStatus = NOTSTARTED;
+    level = lvlMgr.getLevel();
+    ui = new UIMgr();
+    ship = new Ship(level.shipLoc, shipMass);
+  }
 }
 
 void DrawGuide() {

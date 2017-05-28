@@ -37,7 +37,8 @@ final int NOCOLRECT = 6;
 final int NOTSTARTED = -1;
 final int STARTED = 0;
 final int CRASHED = 1;
-final int FINISHED = 2;
+final int FINISHED = 2; // Finished Game
+final int COMPLETED = 3; // Finished Level
 
 final int RED = 0;
 final int BLUE = 1;
