@@ -114,6 +114,7 @@ void draw() {
     fill(textColour);
     textSize(32);
     text("Game Over", width / 2 - 80, height/2 - 120);
+    text("Press any key to restart", width / 2 - 140, height/2 - 120);
   } else if (levelStatus == FINISHED) {
     fill(textColour);
     textSize(32);
@@ -168,14 +169,13 @@ void keyPressed() {
   } else if (levelStatus == COMPLETED && !(key == 'r' || key == 'R')) {
     total_points = level_points;
     level = lvlMgr.getNextLevel();
-  } else if (key == 'r' || key == 'R') {
+  } else if (levelStatus == CRASHED || (key == 'r' || key == 'R')) {
     level_points = total_points;
     level = lvlMgr.getLevel();
+    levelStatus = NOTSTARTED;
+    ui = new UIMgr();
+    ship = new Ship(level.shipLoc, shipMass);
   }
-
-  levelStatus = NOTSTARTED;
-  ui = new UIMgr();
-  ship = new Ship(level.shipLoc, shipMass);
 }
 
 
