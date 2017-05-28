@@ -12,7 +12,6 @@ class NoCol extends Obstacle {
     fill(colour);
     if (points[3] == null) { // it's a triangle
       triangle(points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y);
-      println(points[0].x + " " + points[0].y+ " " + points[1].x + " " + points[1].y + " " + points[2].x + " " +  points[2].y);
     } else { // it's a rectangle
       float rWidth= points[1].x - points[0].x;
       float rHeight = points[2].y - points[0].y;
@@ -41,7 +40,7 @@ class NoCol extends Obstacle {
     if (points[3] == null){
     return String.format("%s %s %s %s %s %s %s %s", NOCOLTRI, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, colour);    
     } else {
-      return String.format("%s %s %s %s %s %s %s %s %s %s", NOCOLRECT, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].x, points[3].x, points[3].y, colour);
+      return String.format("%s %s %s %s %s %s %s %s %s %s", NOCOLRECT, points[0].x, points[0].y, points[1].x, points[1].y, points[2].x, points[2].y, points[3].x, points[3].y, colour);
     }
   }
   

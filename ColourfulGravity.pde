@@ -27,6 +27,10 @@ void setup() {
   lev.mapObstacles.add(right);
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
+  
+  NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
+  lev.mapObstacles.add(r);
+  
 
   Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, 0);
   Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, 1);
@@ -71,7 +75,7 @@ void draw() {
     ship.ApplyForce(goalForce);
     ship.Update();
   } else if (levelStatus == NOTSTARTED) {
-    ui.Draw();
+    //ui.Draw();
     noStroke();
     fill(99, 213, 255, 200);
     ellipse(level.shipLoc.x, level.shipLoc.y, shipPushRadius * 2, shipPushRadius * 2);
@@ -100,6 +104,11 @@ void draw() {
       levelStatus = CRASHED;
     }
   }
+  // need it here so the ui appears on top of obstacles
+  if (levelStatus == NOTSTARTED){
+    ui.Draw();
+  }
+  
   for (Body obj : level.mapBodies) {
     obj.Update();
     if (obj.Collision(ship)) {
