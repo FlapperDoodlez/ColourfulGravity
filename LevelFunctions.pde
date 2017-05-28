@@ -213,6 +213,10 @@ void CreateLevels() {
     lev.mapObstacles.add(right);
     lev.mapObstacles.add(upper);
     lev.mapObstacles.add(lower);
+    
+    Wall w = new Wall (width/2, mapHeight *3/4, width/2 , mapHeight/4, cObstacle);
+    
+    lev.mapObstacles.add(w);
 
     NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
     lev.mapObstacles.add(r);
