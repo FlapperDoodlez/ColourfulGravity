@@ -14,48 +14,6 @@ int level_points = 0;
 void setup() {
   size(900, 500);
   background(cBack);
-  ArrayList<Level> levelsList = new ArrayList<Level>();
-
-  levelsList.add(LevelOne());
-
-  Level lev = new Level(25, height/2, width - 50, height/2);
-
-  Wall left = new Wall (0, 0, 0, mapHeight, cObstacle);
-  Wall right = new Wall (width, 0, width, mapHeight, cObstacle);
-  Wall upper = new Wall (0, 0, width, 0, cObstacle);
-  Wall lower = new Wall (0, mapHeight, width, mapHeight, cObstacle);
-
-  lev.mapObstacles.add(left);
-  lev.mapObstacles.add(right);
-  lev.mapObstacles.add(upper);
-  lev.mapObstacles.add(lower);
-
-  NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
-  lev.mapObstacles.add(r);
-
-
-  Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, RED);
-  Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
-  Planet med1 = new Planet(400, 150, medMass, medRad, medAct, BLUE);
-  Planet med2 = new Planet(400, 150, medMass, medRad, medAct, GREEN);
-  Planet high1 = new Planet(600, 300, highMass, highRad, highAct, BLUE);
-  Planet high2 = new Planet(600, 300, highMass, highRad, highAct, RED);
-  GravityWell well1 = new GravityWell(width - 80, 100, wellMass, wellRad, 100, GREEN);
-  GravityWell well2 = new GravityWell(width - 80, 100, highMass, wellRad, 100, PURPLE);
-
-  lev.mapBodies.add(low2);
-  lev.mapBodies.add(med2);
-  lev.mapBodies.add(high2);
-  lev.mapBodies.add(well2);
-
-  lev.menuBodies.add(low1);
-  lev.menuBodies.add(med1);
-  lev.menuBodies.add(high1);
-  lev.menuBodies.add(well1);
-
-  levelsList.add(lev);
-
-  WriteLevels(levelsList);
 
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
