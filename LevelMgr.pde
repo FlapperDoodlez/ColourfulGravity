@@ -40,6 +40,6 @@ class LevelMgr {
       return null;
     }
     ++curLevel;
-    return levels.get(curLevel);
+    return getLevel();
   }
 }
