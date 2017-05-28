@@ -147,6 +147,9 @@ void draw() {
 
 void mouseClicked() {
   if (levelStatus == NOTSTARTED && mouseY <= mapHeight && !ui.isSelected) {
+    PVector mousePos = new PVector(mouseX, mouseY);
+    if (mousePos.x == ship.location.x && mousePos.y == ship.location.y) return;
+    
     PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), ship.location);
     initialPush.limit(shipPushRadius);
     //PVector initialPush = new PVector(74, -67, 0);
@@ -191,9 +194,11 @@ void DrawGuide() {
   Guide guide;
   guide = new Guide(level.shipLoc, shipMass);
   Finish goal = level.goal;
-
-
-  PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), guide.location);
+  
+  PVector mousePos = new PVector(mouseX, mouseY);
+  if (mousePos.x == guide.location.x && mousePos.y == guide.location.y) return;
+  
+  PVector initialPush = PVector.sub(mousePos, guide.location);
   initialPush.limit(shipPushRadius);
   float strength = map(initialPush.mag(), 1, shipPushRadius, 1, 10);
   initialPush.setMag(strength);
