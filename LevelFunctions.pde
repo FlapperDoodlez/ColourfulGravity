@@ -1,5 +1,6 @@
 Level LevelOne() {
-  Level lev = new Level(25, height*3/4, width - 50, height*3/4);
+  //Level 1
+  /*Level lev = new Level(25, height*3/4, width - 50, height*3/4);
 
   // Bodies
   Planet p = new Planet(width/2, mapHeight*4/5, medMass, medRad, medAct, RED);
@@ -32,7 +33,37 @@ Level LevelOne() {
 
   // cover menu area with background
   NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
+  lev.mapObstacles.add(r);*/
+  
+  //Level 2
+  Level lev = new Level(20, 20, width - 50, mapHeight-20);
+  
+  // Bodies
+  GravityWell well = new GravityWell(width/2, mapHeight/2, wellMass, wellRad, 100, 3);
+  lev.mapBodies.add(well);
+  
+   //Menu Items
+  Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, 0);
+  lev.menuBodies.add(low1);
+  
+  // Menu Fill
+  NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
   lev.mapObstacles.add(r);
+  
+  // Outer Walls
+  Wall left = new Wall (0, 0, 0, mapHeight, cObstacle);
+  Wall right = new Wall (width, 0, width, mapHeight, cObstacle);
+  Wall upper = new Wall (0, 0, width, 0, cObstacle);
+  Wall lower = new Wall (0, mapHeight, width, mapHeight, cObstacle);
+
+  lev.mapObstacles.add(left);
+  lev.mapObstacles.add(right);
+  lev.mapObstacles.add(upper);
+  lev.mapObstacles.add(lower);
+  
+ 
+  
+  
 
   return lev;
 }
