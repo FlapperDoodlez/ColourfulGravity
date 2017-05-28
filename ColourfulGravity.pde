@@ -27,10 +27,10 @@ void setup() {
   lev.mapObstacles.add(right);
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
-  
+
   NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
   lev.mapObstacles.add(r);
-  
+
 
   Planet low1 = new Planet(300, 50, lowMass, lowRad, lowAct, 0);
   Repulsor low2 = new Repulsor(300, 50, highMass, highRad, highAct, 1);
@@ -105,10 +105,10 @@ void draw() {
     }
   }
   // need it here so the ui appears on top of obstacles
-  if (levelStatus == NOTSTARTED){
+  if (levelStatus == NOTSTARTED) {
     ui.Draw();
   }
-  
+
   for (Body obj : level.mapBodies) {
     obj.Update();
     if (obj.Collision(ship)) {
@@ -148,9 +148,11 @@ void keyPressed() {
 }
 
 void DrawGuide() {
-
   Guide guide;
   guide = new Guide(level.shipLoc, shipMass);
+  Finish goal = level.goal;
+
+
   PVector initialPush = PVector.sub(new PVector(mouseX, mouseY), guide.location);
   float strength = map(initialPush.mag(), 1, 100, 1, 10);
   initialPush.setMag(strength);
@@ -158,12 +160,10 @@ void DrawGuide() {
   guide.Update();
   guide.Draw();
 
-
   PVector guideLocation = guide.location.copy();
   PVector prevDistance = guide.location.copy();
   boolean crashed = false;
-  int step = 0;
-  while (step < 120 && crashed == false) { // Num Updates
+  while (level.shipLoc.dist(guideLocation) < 900 && crashed == false) { // Num Updates
     for (Body obj : level.mapBodies) {
       if (obj.Collision(guide)) {
         crashed = true;
@@ -173,6 +173,13 @@ void DrawGuide() {
         guide.ApplyForce(force);
       }
     }
+    
+    if (goal.Collision(guide)) {
+      crashed = true;
+    }
+    
+    PVector goalForce = goal.GetForce(guide);
+    guide.ApplyForce(goalForce);
 
     for (Obstacle obs : level.mapObstacles) {
       if (obs.Collision(guide)) {
@@ -180,7 +187,7 @@ void DrawGuide() {
         break;
       }
     }
-
+    
     guide.Update();
     guideLocation.x = guide.location.x;
     guideLocation.y = guide.location.y;
@@ -189,6 +196,5 @@ void DrawGuide() {
       prevDistance = guideLocation.copy();
       guide.Draw();
     }
-    ++step;
   }
 }

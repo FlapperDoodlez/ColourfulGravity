@@ -20,10 +20,6 @@ class GravityWell extends Body {
   boolean Collision(Ship b) {
     return false;
   }
-  
-  boolean Collision(Guide b) {
-    return false;
-  }
 
   GravityWell(float x, float y, float mass, float radius, float active_radius, int colourType) {
     location = new PVector(x, y);
