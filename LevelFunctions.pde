@@ -242,5 +242,38 @@ void CreateLevels() {
     levelsList.add(lev);
   }
   
+  // Level 8
+  {
+    Level lev = new Level(25, 25, width - 50, mapHeight*3/4);
+    
+    Wall left = new Wall (0, 0, 0, mapHeight, cObstacle);
+    Wall right = new Wall (width, 0, width, mapHeight, cObstacle);
+    Wall upper = new Wall (0, 0, width, 0, cObstacle);
+    Wall lower = new Wall (0, mapHeight, width, mapHeight, cObstacle);
+
+    lev.mapObstacles.add(left);
+    lev.mapObstacles.add(right);
+    lev.mapObstacles.add(upper);
+    lev.mapObstacles.add(lower);
+    
+    Wall w1 = new Wall (150, 40, 150, mapHeight-75, cObstacle);
+    Wall w2 = new Wall (150, mapHeight-75, width-100, mapHeight-75, cObstacle);
+    lev.mapObstacles.add(w1);
+    lev.mapObstacles.add(w2);
+
+    NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
+    lev.mapObstacles.add(r);
+  
+    GravityWell well1 = new GravityWell(width - 80, 100, highMass, wellRad, 100, PURPLE);
+    Repulsor r1 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
+    Repulsor r2 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
+    lev.menuBodies.add(well1);
+    lev.menuBodies.add(r1);
+    lev.menuBodies.add(r2);
+  
+  
+    levelsList.add(lev);
+  }
+  
   WriteLevels(levelsList);
 }
