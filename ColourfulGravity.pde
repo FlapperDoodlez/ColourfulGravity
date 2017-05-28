@@ -14,20 +14,35 @@ int level_points = 0;
 ArrayList<Body> bodiesInMenu = new ArrayList<Body>();
 ArrayList<Obstacle> obstaclesInMenu = new ArrayList<Obstacle>();
 
+Ship menuShip;
+
 void setup() {
   size(900, 500);
   background(cBack);
   textSize(40);
-  
-  bodiesInMenu.add(new Planet((width/2) - 100, height/2 - 50, medMass, medRad, 0, BLUE)); // Med Planet
-  obstaclesInMenu.add(new Wall((width/2) - 105, height/2 + 35, (width/2) - 95, height/2 + 65, cObstacle));
-  bodiesInMenu.add(new Repulsor((width/2) - 100, height/2, lowMass, medRad, 0, GREEN)); // low Repulsor
-  bodiesInMenu.add(new GravityWell((width/2) - 105, height/2 + 100, highMass, medRad, 0, PURPLE)); // high Well
 
-  bodiesInMenu.add(new Planet((width/2) - 95, height/2 + 150, lowMass, lowRad, 0, PURPLE)); // low Planet
-  bodiesInMenu.add(new Planet((width/2) - 115, height/2 + 150, medMass, medRad, 0, BLUE)); // med Planet
-  bodiesInMenu.add(new Planet((width/2) - 145, height/2 + 150, highMass, highRad, 0, RED)); // High Planet
-  bodiesInMenu.add(new Finish((width/2) - 100, height/2 + 195));
+  bodiesInMenu.add(new Planet((width/2) - 100, height/2 - 50, medMass, medRad, 999, BLUE)); // Med Planet
+  obstaclesInMenu.add(new Wall((width/2) - 105, height/2 + 35, (width/2) - 95, height/2 + 65, cObstacle));
+  bodiesInMenu.add(new Repulsor((width/2) - 100, height/2, medMass, medRad, 999, GREEN)); // low Repulsor
+  bodiesInMenu.add(new GravityWell((width/2) - 105, height/2 + 100, medMass, medRad, 999, PURPLE)); // high Well
+
+  bodiesInMenu.add(new Planet((width/2) - 95, height/2 + 150, lowMass, lowRad, 999, PURPLE)); // low Planet
+  bodiesInMenu.add(new Planet((width/2) - 115, height/2 + 150, medMass, medRad, 999, BLUE)); // med Planet
+  bodiesInMenu.add(new Planet((width/2) - 145, height/2 + 150, medMass, highRad, 999, RED)); // High Planet
+  bodiesInMenu.add(new Finish((width/2) - 105, height/2 + 195));
+
+  Wall left = new Wall (0, 0, 0, height, cObstacle);
+  Wall right = new Wall (width, 0, width, height, cObstacle);
+  Wall upper = new Wall (0, 0, width, 0, cObstacle);
+  Wall lower = new Wall (0, height, width, height, cObstacle);
+  obstaclesInMenu.add(left);
+  obstaclesInMenu.add(right);
+  obstaclesInMenu.add(upper);
+  obstaclesInMenu.add(lower);
+
+  float x = random(20, width - 20);
+  float y = random(20, height - 20);
+  menuShip = new Ship(new PVector(x, y), shipMass);
 
   CreateLevels();
   lvlMgr = new LevelMgr();
@@ -41,12 +56,31 @@ void setup() {
 void draw() {
   background(cBack);
   if (levelStatus == MENU) {
-    for (Body b : bodiesInMenu) {
-      b.Update();
+    for (Body obj : bodiesInMenu) {
+      PVector f = obj.GetForce(menuShip);
+      println(f);
+      menuShip.ApplyForce(f);
     }
 
-    for (Obstacle o : obstaclesInMenu) {
-      o.Update();
+    for (Obstacle obs : obstaclesInMenu) {
+      obs.Update();
+      if (obs.Collision(menuShip)) {
+        float x = random(20, width - 20);
+        float y = random(20, height - 20);
+        menuShip = new Ship(new PVector(x, y), shipMass);
+      }
+    }
+
+    menuShip.Update();
+    menuShip.Draw();
+    
+    for (Body obj : bodiesInMenu) {
+      obj.Update();
+      /*if (obj.Collision(menuShip)) {
+        float x = random(20, width - 20);
+        float y = random(20, height - 20);
+        menuShip = new Ship(new PVector(x, y), shipMass);
+      }*/
     }
 
     fill(textColour);
@@ -54,11 +88,11 @@ void draw() {
     text("These attract the player", (width/2) - 80, height/2 - 45);
     text("These repel the player", (width/2) - 80, height/2 + 5);
     text("Don't crash into these", (width/2) - 80, height/2 + 55);
-    
+
     text("These attract the player (a lot), can pass through", (width/2) - 80, height/2 + 110);
     text("Size determines the strength", (width/2) - 80, height/2 + 155);
     text("Get to here!", (width/2) - 80, height/2 + 200);
-    
+
     textSize(40);
     String m = "ColourfulGravity";
     float mLength = textWidth(m); 
