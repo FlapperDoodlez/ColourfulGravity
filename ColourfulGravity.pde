@@ -14,7 +14,9 @@ int level_points = 0;
 void setup() {
   size(900, 500);
   background(cBack);
-
+  
+  CreateLevels();
+  
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
   ship = new Ship(level.shipLoc, shipMass);
