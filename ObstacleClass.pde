@@ -1,6 +1,7 @@
 abstract class Obstacle implements Cloneable{
   abstract void Update();
-  abstract boolean Collision(Body b);
+  abstract boolean Collision(Ship b);
+  abstract boolean Collision(Guide b);
   color colour;
 
   String Save() {

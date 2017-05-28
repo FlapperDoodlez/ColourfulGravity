@@ -3,9 +3,14 @@ class NoCol extends Obstacle {
   // If rectangle, input p1 = topLeft, p2 = topRight, p3 = botLeft, p4 = botRight
   PVector[] points = new PVector[4];
 
-  boolean Collision(Body b) { 
+  boolean Collision(Ship b) { 
     return false;
   }
+  
+  boolean Collision(Guide b) { 
+    return false;
+  }
+  
   void Update() {
     pushMatrix();
     stroke(colour);
