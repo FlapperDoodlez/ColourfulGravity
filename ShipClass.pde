@@ -1,3 +1,4 @@
+
 class Ship extends Body {
   PVector velocity;
   PVector acceleration;
@@ -14,10 +15,7 @@ class Ship extends Body {
 
   void ApplyForce(PVector force) {
     PVector f = PVector.div(force, mass);
-    acceleration.add(f);
-    velocity.add(acceleration);
-    oLocation.add(velocity);
-    acceleration.x = acceleration.y = 0;
+    acceleration.add(f); 
   }
 
   void Draw() {
@@ -40,6 +38,13 @@ class Ship extends Body {
     popMatrix();
   }
   void Update() {
+    velocity.add(acceleration);
+    oLocation.add(velocity);
+    acceleration.x = acceleration.y = 0;
     location = oLocation.copy();
+  }
+
+  String toString() {
+    return String.format("%s %s %s %s", location, velocity, acceleration, mass);
   }
 }

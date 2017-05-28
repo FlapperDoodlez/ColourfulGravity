@@ -11,13 +11,12 @@ class Guide extends Body {
     acceleration = new PVector(0, 0);
     radius = 12;
   }
+  
   void ApplyForce(PVector force) {
     PVector f = PVector.div(force, mass);
     acceleration.add(f);
-    velocity.add(acceleration);
-    oLocation.add(velocity);
-    acceleration.x = acceleration.y = 0;
   }
+  
   void Draw() {
     pushMatrix();
     fill(colour);
@@ -26,7 +25,11 @@ class Guide extends Body {
     ellipse(0, 0, 3, 3);
     popMatrix();
   }
+  
   void Update() {
-    location = oLocation;
+    velocity.add(acceleration);
+    oLocation.add(velocity);
+    acceleration.x = acceleration.y = 0;
+    location = oLocation.copy();
   }
 }
