@@ -161,23 +161,23 @@ void mouseClicked() {
 }
 
 void keyPressed() {
-  if (levelStatus == COMPLETED || (key == 'r' || key == 'R')) {
-    if (levelStatus == FINISHED && !(key == 'r' || key == 'R')) {
-      level = lvlMgr.restartGame();
-      total_points = level_points = 0;
-    } else if (levelStatus == COMPLETED && !(key == 'r' || key == 'R')) {
-      total_points = level_points;
-      level = lvlMgr.getNextLevel();
-    } else {
-      level_points = total_points;
-      level = lvlMgr.getLevel();
-    }
-
-    levelStatus = NOTSTARTED;
-    ui = new UIMgr();
-    ship = new Ship(level.shipLoc, shipMass);
+  if (levelStatus == FINISHED && !(key == 'r' || key == 'R')) {
+    println("Finished");
+    level = lvlMgr.restartGame();
+    total_points = level_points = 0;
+  } else if (levelStatus == COMPLETED && !(key == 'r' || key == 'R')) {
+    total_points = level_points;
+    level = lvlMgr.getNextLevel();
+  } else if (key == 'r' || key == 'R') {
+    level_points = total_points;
+    level = lvlMgr.getLevel();
   }
+
+  levelStatus = NOTSTARTED;
+  ui = new UIMgr();
+  ship = new Ship(level.shipLoc, shipMass);
 }
+
 
 void DrawGuide() {
   Guide guide;
