@@ -7,6 +7,11 @@ class LevelMgr {
     levels = ReadLevels();
   }
 
+  Level restartGame() {
+    curLevel = 0;
+    return getLevel();
+  }
+  
   Level getLevel() {
     Level cLevel = levels.get(curLevel);
     Level r = new Level(cLevel.shipLoc.x, cLevel.shipLoc.y, cLevel.goal.oLocation.x, cLevel.goal.oLocation.y);

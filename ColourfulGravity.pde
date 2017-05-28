@@ -150,8 +150,13 @@ void mouseClicked() {
 
 void keyPressed() {
   if (levelStatus == COMPLETED || (key == 'r' || key == 'R')) {
+    if (levelStatus == FINISHED) {
+      level = lvlMgr.restartGame();
+    } else {
+      level = lvlMgr.getLevel();
+    }
+    
     levelStatus = NOTSTARTED;
-    level = lvlMgr.getLevel();
     ui = new UIMgr();
     ship = new Ship(level.shipLoc, shipMass);
   }
