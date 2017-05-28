@@ -117,7 +117,7 @@ void draw() {
   } else if (levelStatus == COMPLETED) {
     fill(255);
     textSize(32);
-    text("Press any key to go to next level", width / 2 - 60, height/2 - 120);
+    text("Press any key", width / 2 - 110, height/2 - 120);
   }
 
   goal.Update();
