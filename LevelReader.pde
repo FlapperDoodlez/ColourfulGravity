@@ -62,6 +62,17 @@ ArrayList<Level> ReadLevels() {
       Wall w = new Wall(float(line[1]), float(line[2]), float(line[3]), float(line[4]), int(line[5]));
       currLevel.mapObstacles.add(w);
       break;
+    case "4": // Pickups, potentially scrapped
+
+      break;
+    case "5": // No Collision triangles
+      NoCol nT = new NoCol(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]), int(line[7]));
+      currLevel.mapObstacles.add(nT);
+      break;
+    case "6": // No Collision rectangles
+      NoCol nR = new NoCol(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]), float(line[7]), float(line[8]), int(line[9]));
+      currLevel.mapObstacles.add(nR);
+      break;
     }
   }
   levels.add(currLevel);

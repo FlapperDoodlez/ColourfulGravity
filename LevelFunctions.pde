@@ -21,5 +21,13 @@ Level LevelOne(){
   lev.mapObstacles.add(right);
   lev.mapObstacles.add(upper);
   lev.mapObstacles.add(lower);
+  
+  // fill in the triangular area
+  
+  // happy accident, makes it look like a dope pyramid
+  //NoCol tri = new NoCol(w1.point1.x,w1.point1.y,w1.point2.x,w1.point2.y,w2.point1.y,w2.point1.y, cObstacle);
+  
+  NoCol tri = new NoCol(w1.point1.x,w1.point1.y,w1.point2.x,w1.point2.y,w2.point1.x,w2.point1.y, cObstacle);
+  lev.mapObstacles.add(tri);
   return lev;
 }

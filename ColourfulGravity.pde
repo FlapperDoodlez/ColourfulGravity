@@ -10,7 +10,7 @@ Level level;
 UIMgr ui;
 
 void setup() {
-  size(900, 500);
+  size(900, 600);
   background(cBack);
   ArrayList<Level> levelsList = new ArrayList<Level>();
 
