@@ -275,5 +275,52 @@ void CreateLevels() {
     levelsList.add(lev);
   }
   
+  // Level 9
+  {
+    Level lev = new Level(25, 25, width - 50, mapHeight*3/4);
+    
+    Wall left = new Wall (0, 0, 0, mapHeight, cObstacle);
+    Wall right = new Wall (width, 0, width, mapHeight, cObstacle);
+    Wall upper = new Wall (0, 0, width, 0, cObstacle);
+    Wall lower = new Wall (0, mapHeight, width, mapHeight, cObstacle);
+
+    lev.mapObstacles.add(left);
+    lev.mapObstacles.add(right);
+    lev.mapObstacles.add(upper);
+    lev.mapObstacles.add(lower);
+    
+    Wall w1 = new Wall (width/2 -50, mapHeight/2, width/2, mapHeight/2 +100, cObstacle);
+    Wall w2 = new Wall (width/2 +50, mapHeight/2, width/2, mapHeight/2 +100, cObstacle);
+    Wall w3 = new Wall (width/2 -50, mapHeight/2, width/2, mapHeight/2 -100, cObstacle);
+    Wall w4 = new Wall (width/2 +50, mapHeight/2, width/2, mapHeight/2 -100, cObstacle);
+    lev.mapObstacles.add(w1);
+    lev.mapObstacles.add(w2);
+    lev.mapObstacles.add(w3);
+    lev.mapObstacles.add(w4);
+    
+    NoCol n1 = new NoCol (width/2 -50, mapHeight/2, width/2, mapHeight/2 -100, width/2,mapHeight/2, cObstacle);
+    NoCol n2 = new NoCol (width/2 +50, mapHeight/2, width/2, mapHeight/2 +100, width/2,mapHeight/2, cObstacle);
+    lev.mapObstacles.add(n1);
+    lev.mapObstacles.add(n2);
+
+    NoCol r = new NoCol(0, mapHeight, width, mapHeight, 0, height, width, height, cUnSelected);
+    lev.mapObstacles.add(r);
+    
+    Repulsor rep1 = new Repulsor(width - 50, mapHeight *3/4 -100,highMass, highRad, highAct, PURPLE);
+    Repulsor rep2 = new Repulsor(width - 150, mapHeight *3/4,highMass, highRad, highAct, PURPLE);
+    lev.mapBodies.add(rep1);
+    lev.mapBodies.add(rep2);
+  
+    GravityWell well1 = new GravityWell(width - 80, 100, highMass, wellRad, 100, PURPLE);
+    Repulsor r1 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
+    Repulsor r2 = new Repulsor(300, 50, highMass, highRad, highAct, PURPLE);
+    lev.menuBodies.add(well1);
+    lev.menuBodies.add(r1);
+    lev.menuBodies.add(r2);
+  
+  
+    levelsList.add(lev);
+  }
+  
   WriteLevels(levelsList);
 }
