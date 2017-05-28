@@ -46,6 +46,9 @@ final int GREEN = 2;
 final int PURPLE = 3;
 final int YELLOW = 4;
 
+final int textColour = #bdc3c7;
+final int menuTextColour = #333333;
+
 final int menuHeight = 75;
 final int mapHeight = 500-menuHeight;
 final float shipPushRadius = 100;

@@ -29,7 +29,11 @@ class LevelMgr {
     }
     return r;
   }
-
+  
+  boolean finishedGame() {
+    return (curLevel >= levels.size() - 1);
+  }
+  
   Level getNextLevel() {
     println(levels.size());
     if (curLevel >= levels.size() - 1) { 

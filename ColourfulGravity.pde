@@ -8,6 +8,9 @@ LevelMgr lvlMgr;
 Level level;
 UIMgr ui;
 
+int total_points = 0;
+int level_points = 0;
+
 void setup() {
   size(900, 500);
   background(cBack);
@@ -73,6 +76,7 @@ void draw() {
     PVector goalForce = goal.GetForce(ship);
     ship.ApplyForce(goalForce);
     ship.Update();
+    level_points += 10;
   } else if (levelStatus == NOTSTARTED) {
     //ui.Draw();
     noStroke();
@@ -107,25 +111,33 @@ void draw() {
   }
 
   if (levelStatus == CRASHED) {
-    fill(255);
+    fill(textColour);
     textSize(32);
     text("Game Over", width / 2 - 80, height/2 - 120);
   } else if (levelStatus == FINISHED) {
-    fill(255);
+    fill(textColour);
     textSize(32);
     text("You Win", width / 2 - 60, height/2 - 120);
+    textSize(20);
+    text("Total Points: " + total_points, width / 2 - 80, height/2 - 90);
   } else if (levelStatus == COMPLETED) {
-    fill(255);
+    fill(textColour);
     textSize(32);
     text("Press any key", width / 2 - 110, height/2 - 120);
+    textSize(20);
+    text("or press R to get a better score", width / 2 - 160, height / 2 - 90);
   }
 
+  fill(menuTextColour);
+  textSize(20);
+  text("Points: " + level_points, width - 140, height - 28); 
   goal.Update();
   ship.Draw();
 
   if (levelStatus == STARTED && goal.Collision(ship)) {
-    if (lvlMgr.getNextLevel() == null) {
+    if (lvlMgr.finishedGame()) {
       levelStatus = FINISHED;
+      total_points = level_points;
     } else {
       levelStatus = COMPLETED;
     }
@@ -152,10 +164,15 @@ void keyPressed() {
   if (levelStatus == COMPLETED || (key == 'r' || key == 'R')) {
     if (levelStatus == FINISHED) {
       level = lvlMgr.restartGame();
+      total_points = level_points = 0;
+    } else if (levelStatus == COMPLETED && !(key == 'r' || key == 'R')) {
+      total_points = level_points;
+      level = lvlMgr.getNextLevel();
     } else {
+      level_points = total_points;
       level = lvlMgr.getLevel();
     }
-    
+
     levelStatus = NOTSTARTED;
     ui = new UIMgr();
     ship = new Ship(level.shipLoc, shipMass);
