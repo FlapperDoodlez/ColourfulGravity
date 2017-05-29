@@ -29,12 +29,13 @@ ArrayList<Level> ReadLevels() {
 
   for (int i = 1; i < data.length; ++i) {
     String[] line = splitTokens(data[i]);
-    switch (line[0]) {
-    case "-1": // new Level
+    //Cast in switch is need for Java 1.7 Compliance (Android)
+    switch (int(line[0])) {
+    case -1: // new Level
       levels.add(currLevel); // Add old level
       currLevel = new Level(int(line[1]), int(line[2]), int(line[3]), int(line[4]));
       break;
-    case "0": // Planet
+    case 0: // Planet
       Planet p = new Planet(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
       if (int(line[7]) == 1) {
         currLevel.menuBodies.add(p);
@@ -42,7 +43,7 @@ ArrayList<Level> ReadLevels() {
         currLevel.mapBodies.add(p);
       }
       break;
-    case "1": // Gravity Well
+    case 1: // Gravity Well
       GravityWell g = new GravityWell(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
       if (int(line[7]) == 1) {
         currLevel.menuBodies.add(g);
@@ -50,7 +51,7 @@ ArrayList<Level> ReadLevels() {
         currLevel.mapBodies.add(g);
       }
       break;
-    case "2": // Repulsor
+    case 2: // Repulsor
       Repulsor r = new Repulsor(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), int(line[6]));
       if (int(line[7]) == 1) {
         currLevel.menuBodies.add(r);
@@ -58,18 +59,18 @@ ArrayList<Level> ReadLevels() {
         currLevel.mapBodies.add(r);
       }
       break;
-    case "3": // Wall
+    case 3: // Wall
       Wall w = new Wall(float(line[1]), float(line[2]), float(line[3]), float(line[4]), int(line[5]));
       currLevel.mapObstacles.add(w);
       break;
-    case "4": // Pickups, potentially scrapped
+    case 4: // Pickups, potentially scrapped
 
       break;
-    case "5": // No Collision triangles
+    case 5: // No Collision triangles
       NoCol nT = new NoCol(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]), int(line[7]));
       currLevel.mapObstacles.add(nT);
       break;
-    case "6": // No Collision rectangles
+    case 6: // No Collision rectangles
       NoCol nR = new NoCol(float(line[1]), float(line[2]), float(line[3]), float(line[4]), float(line[5]), float(line[6]), float(line[7]), float(line[8]), int(line[9]));
       currLevel.mapObstacles.add(nR);
       break;

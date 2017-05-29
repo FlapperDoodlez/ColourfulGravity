@@ -57,7 +57,7 @@ void draw() {
   if (levelStatus == MENU) {
     for (Body obj : bodiesInMenu) {
       PVector f = obj.GetForce(menuShip);
-      println(f);
+      //println(f);
       menuShip.ApplyForce(f);
     }
 
@@ -244,8 +244,8 @@ void DrawGuide() {
   guide.Update();
   guide.Draw();
 
-  PVector guideLocation = guide.location.copy();
-  PVector prevDistance = guide.location.copy();
+  PVector guideLocation = new PVector(guide.location.x, guide.location.y);
+  PVector prevDistance = new PVector(guide.location.x, guide.location.y);
   boolean crashed = false;
   while (level.shipLoc.dist(guideLocation) < 1000 && crashed == false) { // Num Updates
     for (Body obj : level.mapBodies) {
@@ -277,7 +277,7 @@ void DrawGuide() {
     guideLocation.y = guide.location.y;
 
     if (prevDistance.dist(guideLocation) >= 10) {
-      prevDistance = guideLocation.copy();
+      prevDistance = new PVector(guideLocation.x, guideLocation.y);
       guide.Draw();
     }
   }
