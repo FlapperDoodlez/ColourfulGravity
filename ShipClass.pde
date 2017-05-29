@@ -22,6 +22,7 @@ class Ship extends Body {
     pushMatrix();
     translate(location.x, location.y);
     fill(colour);
+    stroke(0);
     strokeJoin(ROUND);
     strokeWeight(1);
 
