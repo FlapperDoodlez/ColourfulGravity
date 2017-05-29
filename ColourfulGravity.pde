@@ -40,11 +40,10 @@ void setup() {
   obstaclesInMenu.add(upper);
   obstaclesInMenu.add(lower);
 
-  float x = random(20, width - 20);
-  float y = random(20, height - 20);
+  float x = random(50, width - 50);
+  float y = random(50, height - 50);
   menuShip = new Ship(new PVector(x, y), shipMass);
 
-  CreateLevels();
   lvlMgr = new LevelMgr();
   level = lvlMgr.getLevel();
   ship = new Ship(level.shipLoc, shipMass);
@@ -65,31 +64,27 @@ void draw() {
     for (Obstacle obs : obstaclesInMenu) {
       obs.Update();
       if (obs.Collision(menuShip)) {
-        float x = random(20, width - 20);
-        float y = random(20, height - 20);
+        float x = random(50, width - 50);
+        float y = random(50, height - 50);
         menuShip = new Ship(new PVector(x, y), shipMass);
       }
     }
+    for (Body obj : bodiesInMenu) {
+      obj.Update();
+    }
+
 
     menuShip.Update();
     menuShip.Draw();
-    
-    for (Body obj : bodiesInMenu) {
-      obj.Update();
-      /*if (obj.Collision(menuShip)) {
-        float x = random(20, width - 20);
-        float y = random(20, height - 20);
-        menuShip = new Ship(new PVector(x, y), shipMass);
-      }*/
-    }
 
     fill(textColour);
     textSize(15);
-    text("These attract the player", (width/2) - 80, height/2 - 45);
-    text("These repel the player", (width/2) - 80, height/2 + 5);
+    text("This is you!", menuShip.location.x + 15, menuShip.location.y);
+    text("These attract", (width/2) - 80, height/2 - 45);
+    text("These repel", (width/2) - 80, height/2 + 5);
     text("Don't crash into these", (width/2) - 80, height/2 + 55);
 
-    text("These attract the player (a lot), can pass through", (width/2) - 80, height/2 + 110);
+    text("These attract a lot, but you can pass through them", (width/2) - 80, height/2 + 110);
     text("Size determines the strength", (width/2) - 80, height/2 + 155);
     text("Get to here!", (width/2) - 80, height/2 + 200);
 
@@ -185,7 +180,7 @@ void draw() {
   }
 }
 
-void mouseClicked() {
+void mousePressed() {
   if (levelStatus == NOTSTARTED && mouseY <= mapHeight && !ui.isSelected) {
     PVector mousePos = new PVector(mouseX, mouseY);
     if (mousePos.x == ship.location.x && mousePos.y == ship.location.y) return;
