@@ -6,8 +6,8 @@ class Ship extends Body {
   Ship(PVector initial_position, float Mass) {
     mass = Mass;
     colour = cShip;
-    location = initial_position.copy();
-    oLocation = initial_position.copy();
+    location = new PVector(initial_position.x, initial_position.y);
+    oLocation = new PVector(initial_position.x, initial_position.y);
     velocity = new PVector(0, 0);
     acceleration = new PVector(0, 0);
     radius = shipRad;
@@ -42,7 +42,8 @@ class Ship extends Body {
     velocity.add(acceleration);
     oLocation.add(velocity);
     acceleration.x = acceleration.y = 0;
-    location = oLocation.copy();
+    location.x = oLocation.x;
+    location.y = oLocation.y;
   }
 
   String toString() {
