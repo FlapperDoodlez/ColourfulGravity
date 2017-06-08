@@ -1,5 +1,4 @@
 # ColourfulGravity
----
 
 ## About
 
@@ -23,7 +22,7 @@ We hope you have as much fun playing the game as we've had making it!
 ## Background
 We made this game for the Spring 2017 Game Jam hosted by the [Games Institute](https://uwaterloo.ca/games-institute) of the University of Waterloo. We basically created a design plan, designed the code base, established scope, and actually coded the project in under 36 hours.
 [Rishabh Moudgil](http://github.com/FlapperDoodlez)
-[Rob G. W. Nelson](http://github.com/rgwnelso)
+[Rob G. W. Nelson](http://github.com/smileyboy63)
 [Dan Inglis](http://github.com/DanInglis)
 Nathan Choi (Spiritual Guidance)
 
