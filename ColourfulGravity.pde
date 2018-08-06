@@ -86,7 +86,7 @@ void draw() {
 
     text("These attract a lot, but you can pass through them", (width/2) - 80, height/2 + 110);
     text("Size determines the strength", (width/2) - 80, height/2 + 155);
-    text("Get to here!", (width/2) - 80, height/2 + 200);
+    text("Get to here", (width/2) - 80, height/2 + 200);
 
     textSize(40);
     String m = "ColourfulGravity";
